@@ -3,34 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lobby</title>
-
+  <title>AppName - Multiplayer VR Therapy</title>
   <!-- CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-<!-- jQuery and JS bundle w/ Popper.js -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <!-- jQuery and JS bundle w/ Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
- <div class="container p-5">
-   <h1 class="text-center">VR Serious Games with Montessori Approach for Dementia Patients during COVID-19*</h1>
-   <small class="text-muted text-center">*Isip nga tayo ng catchy na pangalan ng app WAHAHAHHA</small>
-   <div class="d-flex justify-content-center p-5 m-5">
-    <div class="border m-5">
-      <a class="btn-lg btn-primary" href="/caretaker">I am a Caretaker</a>
-    </div>
 
-    <div class="border m-5">
-      <a class="btn-lg btn-primary" href="/patient">I am a Patient</a>
-    </div>
-   </div>
+  <nav class="navbar navbar-expand-lg pl-5 pr-5 sticky-top custom-nav">
+    <a class="navbar-brand" href="#">
+    
+      <span class="text-white font-weight-bold pl-1">appName</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   
- </div>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0 ul-nav">
+
+        
+
+        <li class="ml-5 mr-5 nav-item">
+          <a class="nav-link a-link" href="/about">About</a>
+        </li>
+        
+        <li class="ml-5 mr-5 nav-item">
+          <a class="nav-link a-link" href="/manuscript">Manuscript</a>
+        </li>
+
+        <li class="ml-5 mr-5 nav-item">
+          <a class="nav-link a-link" href="/contact">Contact</a>
+        </li>
+
+      
+        
+      </ul>
+      
+    </div>
+  </nav>
+
+  <section class="pt-5 pb-5 pl-4 pr-4 bg-white s-splash">
+    <h1 class="text-center font-weight-bold h-main">VRTherapy</h1>
+    <h3 class="text-center">Personalized virtual rooms</h3>
+    <a href="/get-started" class="nav-link btn btn-lg btn-custom w-25 mt-5 mx-auto">GET STARTED</a>
+  </section>
+
+  <section class="pt-5 pb-5 pl-4 pr-4 bg-pink">
+    <h2 class="text-center font-weight-bold h-main">Features</h2>
+    <div class="container">
+
+      
+
+
+
+      <div class="row">
+        <div class="col-lg">
+          
+
+          <div class="d-flex justify-content-center mt-5">
+            <div class="d-flex">
+              <img src="img/ref.png" width="150"  height="150" alt="" class="p-4 rounded">
+              <div class="ml-4">
+              <h5 class="font-weight-bold">Lorem</h5>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque nulla id eos incidunt explicabo et molestias omnis dicta veniam sequi! Rem mollitia quis maiores tempora magni eius minus nulla excepturi.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg">
+         
+
+          <div class="d-flex justify-content-center mt-5">
+            <div class="d-flex">
+              <img src="img/payout.png" width="150" height="150" alt="" class="p-4">
+              <div class="ml-4">
+              <h5 class="font-weight-bold">Lorem</h5>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae quidem, et doloremque consequatur in esse enim molestias eos! Quasi, ipsa aperiam voluptas laudantium dolorum ullam alias fugit expedita nam natus.</p>
+              </div>
+            </div>
+          </div>
+
+          
+        </div>
+        <div class="col-lg">
+        
+
+          <div class="d-flex justify-content-center mt-5">
+            <div class="d-flex">
+              <img src="img/secure.png" width="150" height="150" alt="" class="p-4">
+              <div class="ml-4">
+              <h5 class="font-weight-bold">Lorem</h5>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae a quo, cupiditate unde odio omnis corporis animi fugit deleniti reprehenderit dignissimos vitae similique veritatis consequatur? Natus non error dolores ducimus?</p>
+              </div>
+            </div>
+          </div>
+
+          
+
+        </div>
+
+
+    </div>
+  </section>
 
 
   
-  </form>
-
+  
 </body>
 </html>

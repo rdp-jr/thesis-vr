@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,400&display=swap');
+
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+.btn-custom {
+  background-color: #FD5956;
+  color: white;
+  font-weight: 700;
+}
+
+.btn-custom:hover {
+  background-color: #e04e4b;
+  color: white;
+}
+
+.a-link {
+  color: white !important;
+  font-size: 1.5em;
+  font-weight: 700;
+  
+}
+
+.a-link:hover {
+  color: lightgrey !important;
+}
+
+.custom-nav {
+  background-color: #107AB0;
+}
+
+.bg-pink {
+  background-color: #FDC1C5;
+}
+
+.s-splash {
+  background-image: url('/static/img/geometric-leaves.png');
+}

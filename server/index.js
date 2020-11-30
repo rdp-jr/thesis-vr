@@ -4,7 +4,10 @@ const path = require("path");
 const express = require("express"); 
 const expbs = require('express-handlebars');
 const nanoid = require('nanoid');
+const sqlite = require('sqlite3')
+const randomize = require('randomatic')
 
+const db = new sqlite.Database('./data/test.db', (err) => console.log(err))
 
 var multer = require('multer')
 
@@ -113,12 +116,13 @@ app.use(express.urlencoded({
   extended: true
 }))
 
+
+// Routes Section
 app.get('/', function(req, res){
   res.render('index')
 })
 
 app.get('/room', function(req, res){
-  // res.render('room')
   res.send('this is illegal')
 })
 
@@ -135,6 +139,40 @@ app.get('/caretaker', function(req, res){
 app.get('/patient', function(req, res){
   res.render('patient')
 })
+
+app.get('/get-started', function(req, res){
+  res.render('get-started')
+})
+
+app.get('/room-join', function(req, res){
+  res.render('room-join')
+})
+
+app.get('/room-create', function(req, res){
+  res.render('room-create')
+})
+
+
+
+app.get('/room-edit', function(req, res){
+  res.render('room-edit')
+})
+
+app.post('/room-edit', upload.none(), function(req, res) {
+  db.get(`SELECT * FROM rooms WHERE secret_key = "${req.body.secret_key}"`, (err, results) => {
+    if (results) {
+      res.render('room-edit-form', {data:results})
+    } else {
+      res.send('wala naman e')
+    }
+  })
+})
+
+// app.post('/room-edit-form', upload.)
+
+
+
+
 
 app.post('/join-room', upload.none(), function(req,res){
   
@@ -161,8 +199,45 @@ app.post('/upload', upload.single("picture_1", 1), function(req, res){
   res.send(`success ${curr_room_code}`)
 })
 
+
+
+app.post('/room-create', upload.none(), function(req, res) {
+  if ('checkbox' in req.body) {
+    // res.send('nice')
+    const room_code = randomize('0', 6)
+    const secret_key = nanoid.nanoid(10)
+    // db.exec(`INSERT INTO rooms `)
+
+
+    res.render('room-create-success', {room_code, secret_key})
+    
+  
+  } else {
+    res.render('get-started')
+  }
+  
+})
+
+app.get('/test',  function(req, res) {
+  
+  db.all('SELECT * FROM rooms', (err, results) => {
+    res.json(results)
+  })
+})
+
+app.get('/add-room', function(req, res) {
+  const room_code = randomize('0', 6)
+  const secret_key = nanoid.nanoid(10)
+  db.run(`INSERT INTO rooms (room_id, secret_key, image_1) VALUES ("${room_code}", "${secret_key}", NULL)`)
+  // stmt.finalize()
+  db.all('SELECT * FROM rooms', (err, results) => {
+    res.json(results)
+  })
+})
+
 webServer.listen(port, () => {
   console.log("listening on http://localhost:" + port);
 });
+
 
 

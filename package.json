@@ -13,10 +13,14 @@
     "aframe-watcher": "^1.4.0",
     "ejs": "^3.1.5",
     "express-handlebars": "^5.2.0",
+    "knex": "^0.21.12",
     "multer": "^1.4.2",
     "nanoid": "^3.1.18",
     "networked-aframe": "^0.7.0",
     "nodemon": "^2.0.6",
+    "randomatic": "^3.1.1",
+    "sequelize": "^6.3.5",
+    "sqlite": "^4.0.17",
     "sqlite3": "^5.0.0"
   }
 }
