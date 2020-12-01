@@ -10,23 +10,26 @@
     <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
     <!-- <script src="/build.js"></script> -->
-    <!-- <script src="assets/components/template.js"></script> -->
+    
     <script>window.NAF || document.write('<script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js">\x3C/script>')</script>
 
   </head>
+  
   <body>
+    
     <a-scene networked-scene="
-      room: dev;
+      room: {{room_code}};
       debug: true;
       adapter: webrtc;
-    ">
+    "> 
       <a-assets>
 
-        <video id="tv-screen" autoplay loop="false" src="/assets/videos/dolphy.mp4"></video>
-        <a-asset-item id="couch" src="/assets/models/Sofa_01.gltf"></a-asset-item>  
-        <a-asset-item id="remote" src="/assets/models/remote.gltf"></a-asset-item>  
-        <a-asset-item id="desk" src="/assets/models/scene.gltf"></a-asset-item>  
-        <a-asset-item id="tv" src="/assets/models/tv.gltf"></a-asset-item>  
+        <video id="tv-screen" autoplay loop="false" src="/static/assets/videos/dolphy.mp4"></video>
+        <a-asset-item id="couch" src="/static/assets/models/Sofa_01.gltf"></a-asset-item>  
+        <a-asset-item id="remote" src="/static/assets/models/remote.gltf"></a-asset-item>  
+        <a-asset-item id="desk" src="/static/assets/models/scene.gltf"></a-asset-item>  
+        <a-asset-item id="tv" src="/static/assets/models/tv.gltf"></a-asset-item>  
+        <img id="image_1" src="{{image_1}}"></img>
 
         <!-- Templates -->
 
@@ -83,7 +86,7 @@
     </a-entity>
 
 
-
+    
     <a-sky color="#6EBAA7"></a-sky>
        <a-entity gltf-model="#couch" scale="0.15 0.15 0.15" rotation="0 90 0"></a-entity>
        <a-entity gltf-model="#remote" scale="0.15 0.15 0.15" rotation="0 90 0" position="2.008 0.888 -0.205"></a-entity>
@@ -92,18 +95,9 @@
         <a-entity gltf-model="#tv" scale="0.5 0.5 0.5" rotation="0 0 0" position="-0.775 1 -3.85"></a-entity>
         <a-box multisrc="src1:#tv-screen;" position="0.05 1.435 -3.44" rotation="0 90 0" color="#D3D3D3" width="0.01" depth="1" shadow scale="0.5 0.75 0.9"></a-box>
       </a-entity>
-       
-      
+       <a-image src="#image_1" position="0 2.142 -1.890"></a-image>
+
       <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#9ba0a6" shadow></a-plane>
-
-
-
-
-
-
-
-
-
 
       <!-- <a-entity position="0 0 0"
         geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0"

@@ -1,0 +1,68 @@
+{{> header }}
+<div class="container p-5">
+  
+  <div class="text-center">
+    <h5> <span class="font-weight-bold">Room ID </span>{{ room_code }} </h5>
+  <h5> <span class="font-weight-bold">Secret Key</span> {{ secret_key }} </h5>
+  </div>
+<form method="POST" action="/room/edit" enctype="multipart/form-data">
+  <input type="hidden" name="room_code" value={{room_code}}>
+  <input type="hidden" name="secret_key" value={{secret_key}}>
+
+
+  <div class="form-group">
+    <h3 class="font-weight-bold">Image 1</h3>
+    <input type="file" id="image_1" name="image_1" accept="image/*" onchange="previewImage1()">
+    
+    <img id="image_1_preview" height="100" length="100"
+    src=
+    {{#if image_1}}
+    "{{image_1}}"
+    {{else}}
+    "/static/img/default-placeholder-image.png"
+    {{/if}}
+    >
+    
+  </div>
+
+
+  
+
+  <div class="text-center">
+  <input class="btn btn-lg mt-5 btn-custom w-25 mt-5 mx-auto" type="submit" value="Save Settings">
+  </div>
+  </div>
+</form>
+
+
+<form method="POST" action="/room/join" enctype="multipart/form-data">
+  
+  <div class="form-group d-flex flex-column align-items-center justify-content-center p-5">
+  <input type="hidden" name="room_code" value={{room_code}}>
+  <input class="btn btn-lg mt-5 btn-custom w-25 mt-5 mx-auto" type="submit" value="Join Room">
+  </div>
+</form>
+
+
+<form method="POST" action="/room/delete" enctype="multipart/form-data">
+  <div class="form-group d-flex flex-column align-items-center justify-content-center p-5">
+  <input type="hidden" name="secret_key" value={{secret_key}}>
+  <input class="btn btn-lg mt-5 btn-danger w-25 mt-5 mx-auto" type="submit" value="Delete Room">
+  </div>
+</form>
+
+<script>
+  function previewImage1() {
+    var file = document.getElementById("image_1").files 
+    if (file.length > 0 ) {
+      var fileReader = new FileReader()
+
+      fileReader.onload = function(e) {
+        document.getElementById("image_1_preview").setAttribute("src", e.target.result)
+      }
+
+      fileReader.readAsDataURL(file[0])
+    }
+  }
+</script>
+
