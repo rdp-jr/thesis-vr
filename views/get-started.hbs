@@ -1,5 +1,8 @@
 {{> header }}
 <div class="container">
+  {{#if message}}
+    <div class="alert alert-info mt-4">{{ message }}</div>
+  {{/if}}
   <h1 class="text-center mt-3">GET STARTED</h1>
   <div class="row text-center">
     <div class="col">

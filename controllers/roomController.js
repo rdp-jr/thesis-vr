@@ -4,11 +4,11 @@ const db = require('../data/db')
 const edit = (req, res) => {
   db.get(`SELECT * FROM rooms WHERE secret_key = "${req.body.secret_key}"`, (err, results) => {
     if (results) {
+      console.log('Room has been edited')
       console.log(results)
       res.render('room-edit', {...results})
     } else {
-      // add error page
-      res.send('get-started')
+      res.render('room-secret', {error: 'Secret key does not match'})
     }
   })
 }
@@ -20,23 +20,18 @@ const create = (req, res) => {
 
     //add error handling logic
     db.run(`INSERT INTO rooms (room_code, secret_key, image_1) VALUES ("${room_code}", "${secret_key}", NULL)`)
-    res.render('room-create-success', {room_code, secret_key})
+    console.log('Room has been created')
+    console.log(`Room Code: ${room_code} Secret Key: ${secret_key}`)
+    res.render('room-create', {success: true, room_code, secret_key})
     
   } else {
-    res.render('get-started')
+    res.render('room-create', {error: "You cannot create a room if you do not agree with the Data Privacy Policy"})
   }
 }
 
 const del = (req, res) => {
   db.run(`DELETE FROM rooms WHERE secret_key = "${req.body.secret_key}"`, (err, results) => {
-    if (results) {
-      // console.log(results)
-      // res.render('room-edit', {...results})
-      res.send('successfully deleted room')
-    } else {
-      // add error page
-      res.send('get-started')
-    }
+    res.render('get-started', {message: "Room has been successfully deleted"})
   })
 }
 
@@ -47,14 +42,11 @@ const room_show_db = (req, res) => {
 }
 
 const join = (req, res) => {
-  // add error handling
   db.get(`SELECT * FROM rooms WHERE room_code = "${req.body.room_code}"`, (err, results) => {
     if (results) {
-      console.log(results)
       res.render('room', {...results})
     } else {
-      // add error page
-      res.send('get-started')
+      res.render('room-join', {error: `Room ${req.body.room_code} does not exist`})
     }
   })
 }

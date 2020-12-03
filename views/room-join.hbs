@@ -1,5 +1,8 @@
 {{> header }}
 <div class="container p-5">
+  {{#if error}}
+    <div class="alert alert-danger">{{ error }}</div>
+  {{/if}}
   <form method="POST" action="/room/join" enctype="multipart/form-data">
     
     <div class="form-group d-flex flex-column align-items-center justify-content-center p-5">

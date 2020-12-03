@@ -13,8 +13,8 @@ const storage = multer.diskStorage({
 
   },
   filename: function (req, file, cb) {
-    console.log('===========upload==========')
-    console.log(req.body)
+    // console.log('===========upload==========')
+    // console.log(req.body)
     const room_code = req.body.room_code
     const ext = file.originalname.split(".")
 
@@ -55,7 +55,13 @@ router.get('/edit', function(req, res) {
   res.redirect('/room/secret')
 })
 
-router.post('/edit', upload.fields([ {name: "image_1", maxCount: 1 }]), roomController.edit)
+const fields = [
+  {name: "image_1", maxCount: 1 },
+  {name: "image_2", maxCount: 1 },
+  {name: "video_1", maxCount: 1},
+  {name: "music_1", maxCount: 1}
+]
+router.post('/edit', upload.fields(fields), roomController.edit)
 
 router.get('/delete', function(req, res) {
   res.redirect('/room/secret')

@@ -89,6 +89,9 @@ io.on("connection", socket => {
 })
 
 // Routes Section
+app.use('/test', (req, res) => {
+  res.render('temp', {room_code: 6969, secret_key: "69420"})
+})
 app.use(indexRoutes)
 app.use('/room', roomRoutes)
 

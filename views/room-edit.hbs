@@ -1,6 +1,8 @@
 {{> header }}
 <div class="container p-5">
-  
+  {{#if error}}
+    <div class="alert alert-danger">{{ error }}</div>
+  {{/if}}
   <div class="text-center">
     <h5> <span class="font-weight-bold">Room ID </span>{{ room_code }} </h5>
   <h5> <span class="font-weight-bold">Secret Key</span> {{ secret_key }} </h5>
@@ -12,7 +14,7 @@
 
   <div class="form-group">
     <h3 class="font-weight-bold">Image 1</h3>
-    <input type="file" id="image_1" name="image_1" accept="image/*" onchange="previewImage1()">
+    <input type="file" id="image_1" name="image_1" accept="image/*" onchange="previewImage(1)">
     
     <img id="image_1_preview" height="100" length="100"
     src=
@@ -22,14 +24,61 @@
     "/static/img/default-placeholder-image.png"
     {{/if}}
     >
-    
   </div>
+
+  <div class="form-group">
+    <h3 class="font-weight-bold">Image 2</h3>
+    <input type="file" id="image_2" name="image_2" accept="image/*" onchange="previewImage(2)">
+    
+    <img id="image_2_preview" height="100" length="100"
+    src=
+    {{#if image_2}}
+    "{{image_2}}"
+    {{else}}
+    "/static/img/default-placeholder-image.png"
+    {{/if}}
+    >
+  </div>
+
+  <div class="form-group">
+    <h3 class="font-weight-bold">Video 1</h3>
+    <input type="file" id="video_1" name="video_1" accept="video/mp4" onchange="previewVideo(1)">
+    <video id="video_1_video" width="320" height="240" controls>
+      <source id="video_1_preview" type="video/mp4"
+      src=
+      {{#if video_1}}
+    "{{video_1}}"
+    {{else}}
+    "#"
+    {{/if}}
+      >
+    </video>
+  </div>
+
+  <div class="form-group">
+    <h3 class="font-weight-bold">Music 1</h3>
+    <input type="file" id="music_1" name="music_1" accept="audio/mpeg" onchange="previewMusic(1)">
+    <audio id="music_1_audio" controls>
+      <source id="music_1_preview" type="audio/mpeg"
+      src=
+      {{#if music_1}}
+    "{{music_1}}"
+    {{else}}
+    "#"
+    {{/if}}
+      >
+    </audio>
+  </div>
+
 
 
   
 
   <div class="text-center">
+    <div>
+      <i class="fa fa-floppy-o" aria-hidden="true"></i>
   <input class="btn btn-lg mt-5 btn-custom w-25 mt-5 mx-auto" type="submit" value="Save Settings">
+    </div>
   </div>
   </div>
 </form>
@@ -43,26 +92,75 @@
   </div>
 </form>
 
+<div class="form-group d-flex flex-column align-items-center justify-content-center p-5">
+  <button type="button" class="btn btn-lg mt-5 btn-danger w-25 mt-5 mx-auto" data-toggle="modal" data-target="#exampleModal">
+    Delete Room
+  </button>
+</div>
 
-<form method="POST" action="/room/delete" enctype="multipart/form-data">
-  <div class="form-group d-flex flex-column align-items-center justify-content-center p-5">
-  <input type="hidden" name="secret_key" value={{secret_key}}>
-  <input class="btn btn-lg mt-5 btn-danger w-25 mt-5 mx-auto" type="submit" value="Delete Room">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Deletion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        All data will be deleted <b>permanently</b>. Are you sure you want to delete this room? 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form method="POST" action="/room/delete" enctype="multipart/form-data">
+            <input type="hidden" name="secret_key" value={{secret_key}}>
+            <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+      </div>
+    </div>
   </div>
-</form>
+</div>
 
 <script>
-  function previewImage1() {
-    var file = document.getElementById("image_1").files 
+
+  function previewImage(image_no) {
+    var file = document.getElementById(`image_${image_no}`).files 
     if (file.length > 0 ) {
       var fileReader = new FileReader()
 
       fileReader.onload = function(e) {
-        document.getElementById("image_1_preview").setAttribute("src", e.target.result)
+        document.getElementById(`image_${image_no}_preview`).setAttribute("src", e.target.result)
       }
 
       fileReader.readAsDataURL(file[0])
     }
   }
+
+  function previewVideo(video_no) {
+    var file = document.getElementById(`video_${video_no}`).files[0] 
+    var video = document.getElementById(`video_${video_no}_video`)
+    var fileReader = new FileReader()
+
+    fileReader.onload = function(e) {
+      document.getElementById(`video_${video_no}_preview`).setAttribute("src", e.target.result)
+      video.load()
+      video.play()
+    }
+    fileReader.readAsDataURL(file)
+  }
+
+  function previewMusic(music_no) {
+    var file = document.getElementById(`music_${music_no}`).files[0] 
+    var music = document.getElementById(`music_${music_no}_audio`)
+    var fileReader = new FileReader()
+
+    fileReader.onload = function(e) {
+      document.getElementById(`music_${music_no}_preview`).setAttribute("src", e.target.result)
+      music.load()
+      music.play()
+    }
+    fileReader.readAsDataURL(file)
+  }
+
 </script>
 
