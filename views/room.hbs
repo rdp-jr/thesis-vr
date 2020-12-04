@@ -24,12 +24,14 @@
     "> 
       <a-assets>
 
-        <video id="tv-screen" autoplay loop="false" src="/static/assets/videos/dolphy.mp4"></video>
+        <video id="tv-screen" loop="false" src="/static/assets/videos/dolphy.mp4"></video>
         <a-asset-item id="couch" src="/static/assets/models/Sofa_01.gltf"></a-asset-item>  
         <a-asset-item id="remote" src="/static/assets/models/remote.gltf"></a-asset-item>  
         <a-asset-item id="desk" src="/static/assets/models/scene.gltf"></a-asset-item>  
-        <a-asset-item id="tv" src="/static/assets/models/tv.gltf"></a-asset-item>  
+        <a-asset-item id="tv" src="/static/assets/models/tv.gltf"></a-asset-item> 
+
         <img id="image_1" src="{{image_1}}"></img>
+        <img id="env" src="/static/assets/environments/env-2.jpeg">
 
         <!-- Templates -->
 
@@ -87,7 +89,8 @@
 
 
     
-    <a-sky color="#6EBAA7"></a-sky>
+    <a-sky src="#env"></a-sky>
+       
        <a-entity gltf-model="#couch" scale="0.15 0.15 0.15" rotation="0 90 0"></a-entity>
        <a-entity gltf-model="#remote" scale="0.15 0.15 0.15" rotation="0 90 0" position="2.008 0.888 -0.205"></a-entity>
        <a-entity gltf-model="#desk" scale="0.05 0.05 0.05" rotation="0 0 0" position="0.15 0.25 -3.5"></a-entity>
@@ -97,7 +100,7 @@
       </a-entity>
        <a-image src="#image_1" position="0 2.142 -1.890"></a-image>
 
-      <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#9ba0a6" shadow></a-plane>
+      <a-plane position="0 0 0" rotation="-90 0 0" width="500" height="500" color="#A0522D" shadow></a-plane>
 
       <!-- <a-entity position="0 0 0"
         geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0"

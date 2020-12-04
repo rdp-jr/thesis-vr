@@ -1,5 +1,6 @@
 const randomize = require('randomatic')
 const db = require('../data/db')
+const fs = require('fs').promises
 
 const edit = (req, res) => {
   db.get(`SELECT * FROM rooms WHERE secret_key = "${req.body.secret_key}"`, (err, results) => {
@@ -30,6 +31,20 @@ const create = (req, res) => {
 }
 
 const del = (req, res) => {
+  db.get(`SELECT * FROM rooms WHERE secret_key = "${req.body.secret_key}"`, (err, results) => {
+    if (results) {
+      const directory = `data/rooms/${req.body.room_code}`
+      fs.rmdir(directory, { recursive: true })
+        .then(() => console.log('directory removed!'));
+
+    } else {
+      res.render('room-secret', {error: 'Secret key does not match'})
+    }
+  })
+
+
+
+
   db.run(`DELETE FROM rooms WHERE secret_key = "${req.body.secret_key}"`, (err, results) => {
     res.render('get-started', {message: "Room has been successfully deleted"})
   })
