@@ -21,6 +21,7 @@
       room: {{room_code}};
       debug: true;
       adapter: webrtc;
+      audio: true;
     "> 
       <a-assets>
 
@@ -37,7 +38,7 @@
 
         <!-- Avatar -->
         <template id="avatar-template">
-          <a-entity class="avatar">
+          <a-entity class="avatar" networked-audio-source>
             <a-sphere class="head"
               color="#ffffff"
               scale="0.45 0.5 0.4"
