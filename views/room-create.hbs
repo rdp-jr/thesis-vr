@@ -1,6 +1,7 @@
 {{> header }}
 <div class="container p-5 text-center">
   {{#if success}}
+    <div class="alert alert-success">Room created successfully!</div>
     <h2 class="font-weight-bold">Room Code {{room_code}} </h2>
     <h2 class="font-weight-bold">Secret Key {{secret_key}}</h2>
     <h5 class="text-muted">The secret key is what you use to edit room settings</h5>
@@ -14,13 +15,45 @@
     <form method="POST" action="/room/create" enctype="multipart/form-data">
         <div class="form-group d-flex flex-column align-items-center justify-content-center p-5">
           <h2 class="font-weight-bold">Data Privacy</h2>
-          <p class="text-muted">Data Privacy statement here</p>
+          {{!-- <p class="text-muted">Data Privacy statement here</p> --}}
+          <p>Please read this privacy statement carefully. If you do not agree with the terms of this privacy statement, please do not proceed with the application.</p>
+         
+          <p>We reserve the right to make changes to this Privacy Statement at any time and for any reason. We will alert you about any changes by updating the “Last Updated” date of this Privacy Statement. Any changes or modifications will be effective immediately upon posting the updated Privacy Statement, and you waive the right to receive specific notice of each such change or modification.</p>
+         
+          <p>You are encouraged to periodically review this Privacy Statement to stay informed of updates. You will be deemed to have been made aware of, will be subject to, and will be deemed to have accepted the changes in any revised Privacy Statement by your continuous use of the application.</p>
+         
+          <p><b>Collection of Data</b></p>
+          <p>Personal identification information such as your name, email address, and demographic information such as your age and gender that you voluntarily give to us when you create the virtual room and when you choose to participate in various activities inside the application.</p>
 
-          <p class="text-muted">Disclaimer: This application is intended for academic purposes only</p>
+          <p><b>Facebook Permissions</b></p>
+          <p>The application may by default access your Facebook basic account information, including your name, email, gender, birthday, and other information that you choose to make public. We may also request access to other permissions related to your account, and you may choose to grant or deny us access to each individual permission. For more information regarding Facebook permissions, refer to the Facebook Permissions Reference page.</p>
+
+          <p><b>Third-Party Data</b></p>
+          <p>Information from third parties, such as personal information or network friends, if you connect your account to the third party and grant the site permission to access this information.</p>
+
+          <p><b>Use of Your Information</b></p>
+          <p>The input of your information when using the application is for academic research purposes only.  Having accurate information about you permits us to provide a more smooth and efficient experience. Specifically, we may use information collected about you via the application to:</p>
+          <ul>
+            <li>Create and manage a virtual room</li>
+            <li>Compile statistical data and analysis for academic use internally</li>
+            <li>Increase efficiency and operation of the application</li>
+            <li>Monitor and analyze usage to improve the VR experience</li>
+          </ul>
+
+
+         <p><b>Disclosure of your information</b></p>
+         <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
+
+         <p><b>Affiliates</b></p>
+         <p>We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Statement. Affiliates include the University of the Philippines Department of Computer Science or other teams that are under common control with us.</p>
+
+         <p><b>Contact Us</b></p>
+         <p>If you have any questions or comments about this Privacy Statement, please contact us at the following email addresses:</p>
+         <p>ayang@up.edu.ph, rdprincipio@up.edu.ph</p>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="checkbox">
             <label class="form-check-label" for="defaultCheck1">
-              I agree
+              I agree to the Data Privacy Policy
             </label>
           </div>
           <input class="btn btn-lg mt-5 btn-custom w-25 mt-5 mx-auto" type="submit" value="Create Room">
