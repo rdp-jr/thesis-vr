@@ -8,15 +8,15 @@
   },
   "author": "YOUR_NAME",
   "dependencies": {
-    "aframe": "^1.0.4",
-    "aframe-template-component": "^3.2.1",
     "aframe-watcher": "^1.4.0",
     "dotenv": "^8.2.0",
     "express-handlebars": "^5.2.0",
     "multer": "^1.4.2",
-    "networked-aframe": "^0.7.0",
+    "naf-janus-adapter": "^4.0.1",
     "nodemon": "^2.0.6",
+    "open-easyrtc": "^2.0.5",
     "randomatic": "^3.1.1",
+    "socket.io": "^2.3.0",
     "sqlite3": "^5.0.0"
   }
 }

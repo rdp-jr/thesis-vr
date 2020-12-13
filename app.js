@@ -3,6 +3,10 @@ const express = require("express")
 const exphbs = require('express-handlebars')
 const roomRoutes = require('./routes/roomRoutes')
 const indexRoutes = require('./routes/indexRoutes')
+const easyrtc = require('open-easyrtc')
+const http = require('http')
+const socketIo = require('socket.io')
+
 require('dotenv').config()
 process.title = "networked-aframe-server"
 
@@ -31,62 +35,57 @@ if (process.env.NODE_ENV === "development") {
   )
 }
 
-const http = require('http').createServer(app) 
-const io = require('socket.io')(http)
+// Start Express http server
+var webServer = http.createServer(app);
 
-const rooms = {}
+// Start Socket.io so it attaches itself to Express server
+var socketServer = socketIo.listen(webServer, {"log level":1});
 
-io.on("connection", socket => {
-  console.log("user connected", socket.id)
+var myIceServers = [
+  {"url":"stun:stun.l.google.com:19302"},
+  {"url":"stun:stun1.l.google.com:19302"},
+  {"url":"stun:stun2.l.google.com:19302"},
+  {"url":"stun:stun3.l.google.com:19302"}
+ 
+];
+easyrtc.setOption("appIceServers", myIceServers);
+easyrtc.setOption("logLevel", "debug");
+easyrtc.setOption("demosEnable", false);
 
-  let curRoom = null
+// Overriding the default easyrtcAuth listener, only so we can directly access its callback
+easyrtc.events.on("easyrtcAuth", function(socket, easyrtcid, msg, socketCallback, callback) {
+    easyrtc.events.defaultListeners.easyrtcAuth(socket, easyrtcid, msg, socketCallback, function(err, connectionObj){
+        if (err || !msg.msgData || !msg.msgData.credential || !connectionObj) {
+            callback(err, connectionObj);
+            return;
+        }
 
-  socket.on("joinRoom", data => {
-    const { room } = data
+        connectionObj.setField("credential", msg.msgData.credential, {"isShared":false});
 
-    if (!rooms[room]) {
-      rooms[room] = {
-        name: room,
-        occupants: {},
-      }
-    }
+        console.log("["+easyrtcid+"] Credential saved!", connectionObj.getFieldValueSync("credential"));
 
-    const joinedTime = Date.now()
-    rooms[room].occupants[socket.id] = joinedTime
-    curRoom = room
+        callback(err, connectionObj);
+    });
+});
 
-    console.log(`${socket.id} joined room ${room}`)
-    socket.join(room)
+// To test, lets print the credential to the console for every room join!
+easyrtc.events.on("roomJoin", function(connectionObj, roomName, roomParameter, callback) {
+    console.log("["+connectionObj.getEasyrtcid()+"] Credential retrieved!", connectionObj.getFieldValueSync("credential"));
+    easyrtc.events.defaultListeners.roomJoin(connectionObj, roomName, roomParameter, callback);
+});
 
-    socket.emit("connectSuccess", { joinedTime })
-    const occupants = rooms[room].occupants
-    io.in(curRoom).emit("occupantsChanged", { occupants })
-  })
+// Start EasyRTC server
+var rtc = easyrtc.listen(app, socketServer, null, function(err, rtcRef) {
+    console.log("Initiated");
 
-  socket.on("send", data => {
-    io.to(data.to).emit("send", data)
-  })
+    rtcRef.events.on("roomCreate", function(appObj, creatorConnectionObj, roomName, roomOptions, callback) {
+        console.log("roomCreate fired! Trying to create: " + roomName);
 
-  socket.on("broadcast", data => {
-    socket.to(curRoom).broadcast.emit("broadcast", data)
-  })
+        appObj.events.defaultListeners.roomCreate(appObj, creatorConnectionObj, roomName, roomOptions, callback);
+    });
+});
 
-  socket.on("disconnect", () => {
-    console.log('disconnected: ', socket.id, curRoom)
-    if (rooms[curRoom]) {
-      console.log("user disconnected", socket.id)
 
-      delete rooms[curRoom].occupants[socket.id]
-      const occupants = rooms[curRoom].occupants
-      socket.to(curRoom).broadcast.emit("occupantsChanged", { occupants })
-
-      if (occupants == {}) {
-        console.log("everybody left room")
-        delete rooms[curRoom]
-      }
-    }
-  })
-})
 
 // Routes Section
 app.use('/test', (req, res) => {
@@ -95,6 +94,7 @@ app.use('/test', (req, res) => {
 app.use(indexRoutes)
 app.use('/room', roomRoutes)
 
-http.listen(PORT, () => {
-  console.log("listening on http://localhost:" + PORT)
-})
+//listen on port
+webServer.listen(PORT, function () {
+  console.log('listening on http://localhost:' + PORT);
+});
