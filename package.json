@@ -1,12 +1,12 @@
 {
-  "name": "thesis-vr",
+  "name": "gunitahu",
   "version": "1.0.0",
-  "description": "My first multi-user virtual reality",
+  "description": "A serious vr game for dementia patients with montessori approach",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "author": "YOUR_NAME",
+  "author": "ang-principio",
   "dependencies": {
     "aframe-watcher": "^1.4.0",
     "dotenv": "^8.2.0",
