@@ -69,6 +69,7 @@
     > 
       <a-assets>
         <video id="tv-screen" src="{{video_1}}" loop="false"> </video>
+        <audio id="radio-music" src="{{music_1}}" loop="false"> </audio>
         <a-asset-item id="couch" src="/static/assets/models/Sofa_01.gltf" ></a-asset-item>  
         <a-asset-item id="remote" src="/static/assets/models/remote.gltf" ></a-asset-item>  
         <a-asset-item id="desk" src="/static/assets/models/scene.gltf" ></a-asset-item>  
@@ -76,6 +77,7 @@
         <a-asset-item id="plant-1" src="/static/assets/models/plant-1.gltf" ></a-asset-item> 
         <a-asset-item id="plant-2" src="/static/assets/models/UmbrellaPalmTree.gltf" ></a-asset-item> 
         <a-asset-item id="house" src="/static/assets/models/198.glb" ></a-asset-item> 
+        <a-asset-item id="radio" src="/static/assets/models/radio.gltf" ></a-asset-item> 
         <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
 
         <img id="image_1" src="{{image_1}}" ></img>
@@ -263,6 +265,14 @@
           scale="0.15 0.15 0.15" 
           rotation="0 90 0" 
           position="2.008 0.888 -0.205">
+        </a-gltf-model>
+
+        <!-- Radio -->
+       <a-gltf-model id="radio-model"
+          src="#radio" 
+          scale="1 1 1" 
+          rotation="0 -90 0" 
+          position="2.008 0.4 -0.205">
         </a-gltf-model>
       
         <a-image src="#image_1" position="5.939 2.142 -1.890" rotation="0 90 0"></a-image>
