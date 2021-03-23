@@ -13,8 +13,6 @@ const storage = multer.diskStorage({
 
   },
   filename: function (req, file, cb) {
-    // console.log('===========upload==========')
-    // console.log(req.body)
     const room_code = req.body.room_code
     const ext = file.originalname.split(".")
 
@@ -68,10 +66,6 @@ router.get('/delete', function(req, res) {
 })
 
 router.post('/delete', upload.none(), roomController.del)
-
-
-
-
 
 router.get('/db', roomController.room_show_db)
 

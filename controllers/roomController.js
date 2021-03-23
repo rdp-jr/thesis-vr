@@ -3,6 +3,24 @@ const db = require('../data/db')
 const fs = require('fs').promises
 
 const edit = (req, res) => {
+  console.log(req.body)
+
+
+  const name = req.body.patient_name
+  const age = req.body.patient_age
+
+  if (name || age) {
+    var sql = `UPDATE rooms SET patient_name = ?, patient_age = ? WHERE secret_key = ?`
+    db.run(sql, [name, age, req.body.secret_key], function(err) {
+      if (err) {
+        return console.log(err.message)
+      }
+
+      console.log('updated successfully')
+    })
+  }
+
+
   db.get(`SELECT * FROM rooms WHERE secret_key = "${req.body.secret_key}"`, (err, results) => {
     if (results) {
       console.log('Room has been edited')
@@ -41,8 +59,6 @@ const del = (req, res) => {
       res.render('room-secret', {error: 'Secret key does not match'})
     }
   })
-
-
 
 
   db.run(`DELETE FROM rooms WHERE secret_key = "${req.body.secret_key}"`, (err, results) => {
