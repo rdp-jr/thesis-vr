@@ -3,13 +3,12 @@ AFRAME.registerComponent("block", {
     init: function() {
 
         var el = this.el
-        var vid = document.getElementById('tv-screen')
         var addBlock = document.getElementById('addBlock')
         addBlock.addEventListener('click', function() {
             console.log('plus!')
            
             var { x, y, z } = el.getAttribute('position')
-            el.setAttribute('position', {x: x, y: y, z: z})
+            el.setAttribute('position', {x: x, y: y + 1, z: z})
            
         });
 
@@ -18,7 +17,7 @@ AFRAME.registerComponent("block", {
           console.log('minus!')
          
            var { x, y, z } = el.getAttribute('position')
-            el.setAttribute('position', {x: x, y: y, z: z})
+            el.setAttribute('position', {x: x, y: y - 1, z: z})
         });
     }
 })
