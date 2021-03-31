@@ -1,0 +1,24 @@
+<script>
+function setMediaSrc(srcInput, srcDefault, id) {
+    document.getElementById(id).src = srcInput || srcDefault;
+}
+
+// Default Video
+var vidSrcPersonalized = "{{video_1}}";
+var vidSrcDefault = "/static/assets/videos/default_video.mp4";
+const vid_id = 'tv-screen';
+setMediaSrc(vidSrcPersonalized, vidSrcDefault, vid_id);
+
+// Default Music
+var radioSrcPersonalized = "{{music_1}}";
+var radioSrcDefault = "/static/assets/audio/default_radio.mp3";
+const radio_id = 'radio-music';
+setMediaSrc(radioSrcPersonalized, radioSrcDefault, radio_id);
+
+//Default Image 1
+var imageSrcPersonalized = "{{image_1}}";
+var imageSrcDefault = "/static/assets/img/default_image_1.jpg";
+const image_id = 'image_1';
+setMediaSrc(imageSrcPersonalized, imageSrcDefault, image_id);
+
+</script>

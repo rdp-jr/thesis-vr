@@ -3,61 +3,48 @@
   <head>
     <meta charset="utf-8">
     <meta name="description" content="GunitaHu Room">
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>   
-    <script src="https://unpkg.com/networked-aframe@0.8.0/dist/networked-aframe.min.js"></script>
+    
+    {{!-- AFrame --}}
+     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>  
+
+    {{!-- Multiplayer dependencies --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
     <script src="https://unpkg.com/open-easyrtc@^2.0.5/api/easyrtc.js"></script>
-    <script src="/static/assets/js/EasyRtcAdapter.js"></script>
+    <script src="https://unpkg.com/networked-aframe@0.8.0/dist/networked-aframe.min.js"></script>
 
+    {{!-- AFrame Libraries --}}
+    {{!-- <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script> --}}
+    <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script>
+    {{!-- <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script> --}}
     <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
-    
-    
-    <link rel="stylesheet" type="text/css" href="/static/css/loading.css">
 
-     <!-- Bootstrap Bootswatch theme CSS - other themes available here: https://bootswatch.com -->
-    <link rel="stylesheet" href="https://cdn.rawgit.com/thomaspark/bootswatch/gh-pages/slate/bootstrap.min.css" />
-  
-    <!-- Bootstrap JS Dependencies -->
+    
+
+    
+    {{!-- CSS + jQuery --}}
+    <link rel="stylesheet" type="text/css" href="/static/css/loading.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
-  <script src="https://unpkg.com/aframe-state-component@7.1.0/dist/aframe-state-component.min.js"></script>
 
-    {{!-- <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script> --}}
-  {{!-- <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script> --}}
-<script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
+    
+    
+ 
+ 
   </head>
+ 
   <body>
 
-     {{!-- <div id="splash" style="background-color: rgba(0, 0, 0);">
+     <div id="splash" style="background-color: rgba(0, 0, 0);">
       <div class="loading"></div>
-    </div> --}}
+    </div>
 
+    {{!-- Custom Components --}}
     <script src="/static/assets/js/load-assets.component.js"></script>
+    {{!-- <script src="/static/assets/js/capture-mouse.component.js"></script> --}}
+    {{!-- <script src="/static/assets/js/flower-grow.component.js"></script>
+    <script src="/static/assets/js/flower-drop.component.js"></script> --}}
+    <script src="/static/assets/js/block.component.js"></script>
     
-
-    {{!-- <script>
-        AFRAME.registerState({
-          initialState: {
-            score: 0
-          },
-
-          handlers: {
-            decreaseScore: function (state, action) {
-              state.score -= action.points;
-            },
-
-            increaseScore: function (state, action) {
-              state.score += action.points;
-            }
-          }
-        });
-
-    </script> --}}
-
-
-   
 
     <a-scene networked-scene="
       room: {{room_code}};
@@ -68,31 +55,28 @@
     loading-screen="enabled:false"
     > 
       <a-assets>
-        {{!-- personalized --}}
-        <video id="tv-screen" loop="false"></video>
-        <audio id="radio-music" loop="false"></audio>
-        <img id="image_1"></img>
+        {{> common_assets }}
+        {{!-- <a-mixin id="mixin-flower"
+          scale="0.1 0.1 0.1"
+          hoverable grabbable stretchable draggable droppable
+          event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+          event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+          flower-grow
+        ></a-mixin> --}}
 
-        {{!-- common --}}
-        <a-asset-item id="couch" src="/static/assets/models/Sofa_01.gltf" ></a-asset-item>  
-        <a-asset-item id="remote" src="/static/assets/models/remote.gltf" ></a-asset-item>  
-        <a-asset-item id="desk" src="/static/assets/models/scene.gltf" ></a-asset-item>  
-        <a-asset-item id="tv" src="/static/assets/models/tv.gltf" ></a-asset-item> 
-        <a-asset-item id="plant-1" src="/static/assets/models/plant-1.gltf" ></a-asset-item> 
-        <a-asset-item id="plant-2" src="/static/assets/models/UmbrellaPalmTree.gltf" ></a-asset-item> 
-        <a-asset-item id="house" src="/static/assets/models/198.glb" ></a-asset-item> 
-        <a-asset-item id="radio" src="/static/assets/models/radio.gltf" ></a-asset-item> 
-        <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
-
-       
-        <img id="floor" src="/static/assets/img/floor.jpg" ></img>
-        <img id="wall" src="/static/assets/img/wall.jpg" ></img>
-
+        <!-- Templates -->
+        <template id="flower-template">
+          <a-entity id="ent-flower"
+            gltf-model="#rose"
+            scale="0.1 0.1 0.1"
+            position="5.675 0.723 4.627"
+            onclick="clickFlower()"
+            >
+          </a-entity>
+        </template>
 
         <template id="box-template">
-          <a-entity
-          isPlaying="false"
-          >
+          <a-entity>
             <a-box class="blk"
              position="0 1 -2.650" 
              scale="0.35 0.35 0.35" 
@@ -102,200 +86,133 @@
           </a-entity>
         </template>
 
-
-        <template id="tv-template"> 
-          <a-entity>
-            
-          </a-entity>
-        </template>
-
-      <template id="text-template"> 
-        <a-entity
-       
-        <a-text id="text-display"
-          scale="5 5 5"
-          material="color: blue"
-          position="0.013 1.732 -2.650"
-          >
-      </a-text>
-       
         
-        >
-
-        </a-entity>
-      </template>
-
-        <!-- Templates -->
-        <!-- Avatar -->
-        <template id="avatar-template">
-          <a-entity class="avatar" networked-audio-source>
-            <a-sphere class="head"
-              color="#ffffff"
-              scale="0.45 0.5 0.4">
-            </a-sphere>
-            <a-entity class="face"
-                position="0 0.05 0">
-                <a-sphere class="eye"
-                  color="#efefef"
-                  position="0.16 0.1 -0.35"
-                  scale="0.12 0.12 0.12">
-                  <a-sphere class="pupil"
-                      color="#000"
-                      position="0 0 -1"
-                      scale="0.2 0.2 0.2">
-                  </a-sphere>
-                </a-sphere>
-                <a-sphere class="eye"
-                  color="#efefef"
-                  position="-0.16 0.1 -0.35"
-                  scale="0.12 0.12 0.12">
-                  <a-sphere class="pupil"
-                    color="#000"
-                    position="0 0 -1"
-                    scale="0.2 0.2 0.2">
-                  </a-sphere>
-                </a-sphere>
-            </a-entity>
-          </a-entity>
-      </template>
+       {{> avatar_template }}
 
       </a-assets>
-      <a-entity foo>
+
         <a-entity id="player"
           networked="template:#avatar-template;attachTemplateToLocal:false;"
           camera
           position="0 1.6 0"
           look-controls="pointerLockEnabled: true"
-          wasd-controls="acceleration:10">
-          <a-sphere class="head"
-            visible="false">
-          </a-sphere>
-          <a-cursor></a-cursor>
-          {{!-- <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
-          <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity> --}}
-          
-        </a-entity>
-
-
-      
-        <a-entity model-manager>
-          <!-- Couch -->
-          {{!-- <a-gltf-model src="#couch" 
-            scale="0.15 0.15 0.15" 
-            rotation="0 90 0">
-          </a-gltf-model> --}}
-          
-          <!-- TV Rack -->
-          {{!-- <a-gltf-model src="#desk" 
-            scale="0.05 0.05 0.05" 
-            rotation="0 0 0" 
-            position="0.15 0.25 -3.5">
-          </a-gltf-model> --}}
-
-          <!-- Television Set -->
-          <a-entity 
-            position="0 0.10 0.25"
-            
+          cursor="rayOrigin:mouse"
+          wasd-controls="acceleration:10"
+          super-hands="colliderEvent: raycaster-intersection;
+            colliderEventProperty: els;
+            colliderEndEvent:raycaster-intersection-cleared;
+            colliderEndEventProperty: clearedEls;"
             >
-            <a-gltf-model src="#tv" 
-              scale="0.5 0.5 0.5" 
-              rotation="0 0 0" 
-              position="-0.775 1 -3.85">
-            </a-gltf-model>
+          <a-sphere class="head" visible="false"></a-sphere>
+          <a-cursor></a-cursor>
+        </a-entity>
 
-            <a-box id="ent-tv"
-              bind__isPlaying="value: isTvPlaying"
-              multisrc="src1:#tv-screen;" 
-              scale="0.5 0.75 0.9"
-              position="0.05 1.435 -3.44" 
-              rotation="0 90 0" 
-              color="#D3D3D3" 
-              width="0.01" 
-              depth="1" 
-              shadow>
-            </a-box>
-          </a-entity>
 
-          <!-- Plant 1 -->
-          {{!-- <a-gltf-model src="#plant-1" 
-            scale="2 2 2" 
-            rotation="0 0 0" 
-            position="1.05 2.340 -8">
-          </a-gltf-model> --}}
+        <a-entity model-manager>
 
-          <!-- Plant 2 -->
-          {{!-- <a-gltf-model src="#plant-2" 
-            scale="0.25 0.25 0.25" 
-            rotation="0 0 0" 
-            position="1.05 1 -3.5">
-          </a-gltf-model> --}}
+          {{> house }}
 
-          <!-- House -->
-          <!-- <a-gltf-model src="#house" 
-            scale="1 1 1" 
-            rotation="0 0 0" 
-            position="0 0 0">
-          </a-gltf-model> -->
+
+          {{!-- LIVING ROOM --}}
+
+          {{> couch }}
+          {{> tv_set }}
+          {{!-- {{> tv_plants }} --}}
+          
+          {{> remote }}
+          {{> radio }}
+
+
+          {{!-- must be a gltf-model --}}
+          {{!-- {{> image_1 }} --}}
+
+
+          {{!-- GARDEN --}}
+          {{> bush }}
+          {{> vase }}
+          {{> watercan }}
+          {{> small_table }}
 
         </a-entity>
+
         <a-sky color="#FFFDD0"></a-sky>
-
-
-       <!-- Remote -->
-       <a-gltf-model id="remote-model"
-          src="#remote" 
-          scale="0.15 0.15 0.15" 
-          rotation="0 90 0" 
-          position="2.008 0.888 -0.205">
-        </a-gltf-model>
-
-        <!-- Radio -->
-       <a-gltf-model id="radio-model"
-          src="#radio" 
-          scale="1 1 1" 
-          rotation="0 -90 0" 
-          position="2.008 0.4 -0.205">
-        </a-gltf-model>
-      
-        <a-image src="#image_1" position="5.939 2.142 -1.890" rotation="0 90 0"></a-image>
 
       </a-entity>
 
-      <a-entity id="test-block" networked="template:#box-template;attachTemplateToLocal:true;networkId:remote;persistent:true;owner:scene"></a-entity>
       
+      
+
+
+      <a-entity id="test-flower" 
+      networked="template:#flower-template;attachTemplateToLocal:true;networkId:remote;persistent:true;owner:scene"
+      ></a-entity>
+
+
+
+       {{!-- 3 Blocks Networked Test  --}}
+      {{!-- <a-entity id="test-block" networked="template:#box-template;attachTemplateToLocal:true;networkId:remote;persistent:true;owner:scene"></a-entity>
       <a-box id="addBlock" position="0.8 1 -2.650" scale="0.5 0.5 0.5" material="color: green"></a-box>
-      <a-box id="minusBlock" position="-1 1 -2.650" scale="0.5 0.5 0.5" material="color: red"></a-box>
+      <a-box id="minusBlock" position="-1 1 -2.650" scale="0.5 0.5 0.5" material="color: red"></a-box> --}}
+
 
     </a-scene>
 
+    <script src="/static/assets/js/networked-objects.component.js"></script>
+    
+
+  {{> defaultSrc }}
+  <script src="/static/assets/js/sync.system.js"></script>
+
   <script>
-    function setMediaSrc(srcInput, srcDefault, id) {
-      document.getElementById(id).src = srcInput || srcDefault;
+    function clickWatercan() {
+      NAF.connection.broadcastDataGuaranteed('watercan-clicked', true)
+      growFlower()
+      
     }
 
-    // Default Video
-    var vidSrcPersonalized = "{{video_1}}";
-    var vidSrcDefault = "/static/assets/videos/default_video.mp4";
-    const vid_id = 'tv-screen';
-    setMediaSrc(vidSrcPersonalized, vidSrcDefault, vid_id);
+    function growFlower() {
+      var flower = document.getElementById('ent-flower')
+      flower.setAttribute('animation__grow', 'property: scale; to: 0.25 0.25 0.25; dur: 1500')
+    }
 
-    // Default Music
-    var radioSrcPersonalized = "{{music_1}}";
-    var radioSrcDefault = "/static/assets/audio/default_radio.mp3";
-    const radio_id = 'radio-music';
-    setMediaSrc(radioSrcPersonalized, radioSrcDefault, radio_id);
+    function clickFlower() {
+      NAF.connection.broadcastDataGuaranteed('flower-clicked', true)
+      moveFlowerToVase()
+    }
 
-    //Default Image 1
-    var imageSrcPersonalized = "{{image_1}}";
-    var imageSrcDefault = "/static/assets/img/default_image_1.jpg";
-    const image_id = 'image_1';
-    setMediaSrc(imageSrcPersonalized, imageSrcDefault, image_id);
+    function moveFlowerToVase() {
+      var flower = document.getElementById('ent-flower')
+      flower.setAttribute('animation__move', 'property: position; to: 2.164 0.769 3.183; dur: 1500')
+      flower.setAttribute('animation__rotate', 'property: rotation; to: 0 0 0; dur: 1500')
+    }
+
+
+    function clickRemote() {
+      NAF.connection.broadcastDataGuaranteed('remote-clicked', true)
+      var vid = document.getElementById('tv-screen')
+      if (!vid.paused) {
+          vid.pause()
+      } else {
+          vid.play()
+      }
+
+    }
+
+    function clickRadio() {
+      NAF.connection.broadcastDataGuaranteed('radio-clicked', true)
+      var radio = document.getElementById('radio-music')
+      if (!radio.paused) {
+          radio.pause()
+      } else {
+          radio.play()
+      }
+
+    }
+
 
   </script>
 
-  <script src="/static/assets/js/networked-objects.component.js"></script>
-  <script src="/static/assets/js/block.component.js"></script>
-  <script src="/static/assets/js/sync.system.js"></script>
+  
   
 
   </body>
