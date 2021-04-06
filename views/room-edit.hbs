@@ -7,7 +7,16 @@
     <h1 class="font-weight-bold">Room Settings</h1>
 
      <h5> <span class="font-weight-bold">Room ID </span>{{ room_code }} </h5>
-        <h5> <span class="font-weight-bold">Secret Key</span> {{ secret_key }} </h5>
+    <hr>
+
+    <div>
+      <form method="POST" action="/room/archive" enctype="multipart/form-data">
+        <input type="hidden" name="room_code" value={{room_code}}>
+        <input type="hidden" name="secret_key" value={{secret_key}}>
+        <input class="btn btn-lg btn-custom" type="submit" value="View Archive">
+      </form>
+    </div>
+
     <hr>
 
     <section id="living-room">

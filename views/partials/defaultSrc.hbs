@@ -15,6 +15,14 @@ var radioSrcDefault = "/static/assets/audio/default_radio.mp3";
 const radio_id = 'radio-music';
 setMediaSrc(radioSrcPersonalized, radioSrcDefault, radio_id);
 
+
+var audioElem = document.getElementById(radio_id)
+audioElem.addEventListener("error", function () {
+if (audioElem.error) {
+    alert(audioElem.error.code);
+}
+}, false);
+
 //Default Image 1
 var imageSrcPersonalized = "{{image_1}}";
 var imageSrcDefault = "/static/assets/img/default_image_1.jpg";

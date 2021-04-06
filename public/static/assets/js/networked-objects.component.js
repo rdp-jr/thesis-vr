@@ -22,6 +22,6 @@ NAF.schemas.add({
 
 // last person to go in the room gets ownership
 NAF.connection.onConnect(() => {
-  const entBlock = document.getElementById('test-block')
-  NAF.utils.takeOwnership(entBlock)
+  // const entBlock = document.getElementById('test-block')
+  // NAF.utils.takeOwnership(entBlock)
 })

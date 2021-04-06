@@ -7,6 +7,7 @@ const easyrtc = require('open-easyrtc')
 const http = require('http')
 const socketIo = require('socket.io')
 
+
 require('dotenv').config()
 process.title = "networked-aframe-server"
 

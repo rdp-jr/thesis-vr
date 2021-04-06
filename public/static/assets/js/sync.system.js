@@ -3,33 +3,8 @@ AFRAME.registerSystem('sync', {
         var vid = document.getElementById('tv-screen')
         var music = document.getElementById('radio-music')
 
-
-        // Sending
-        // var remote = document.getElementById('remote-model')
-        // var radio = document.getElementById('radio-model')
-        // remote.addEventListener('click', function() {
-        //     NAF.connection.broadcastDataGuaranteed('remote-clicked', true)
-        //     if (!vid.paused) {
-        //         vid.pause()
-        //     } else {
-        //         vid.play()
-        //     }
-            
-            
-        // });
-
-        // radio.addEventListener('click', function() {
-        //     NAF.connection.broadcastDataGuaranteed('radio-clicked', true)
-        //     if (!music.paused) {
-        //         music.pause()
-        //     } else {
-        //         music.play()
-        //     }
-           
-            
-        // });
-
         NAF.connection.subscribeToDataChannel('remote-clicked', function (senderId, type, data, targetId) {
+            AFRAME.scenes[0].emit('toggleRemote', {})
             if (!vid.paused) {
                 vid.pause()
             } else {
@@ -38,6 +13,7 @@ AFRAME.registerSystem('sync', {
         })
 
         NAF.connection.subscribeToDataChannel('radio-clicked', function (senderId, type, data, targetId) {
+            AFRAME.scenes[0].emit('toggleRadio', {})
             if (!music.paused) {
                 music.pause()
             } else {
@@ -46,10 +22,12 @@ AFRAME.registerSystem('sync', {
         })
 
         NAF.connection.subscribeToDataChannel('watercan-clicked', function (senderId, type, data, targetId) {
+            AFRAME.scenes[0].emit('toggleWater', {})
             growFlower()
         })
 
         NAF.connection.subscribeToDataChannel('flower-clicked', function (senderId, type, data, targetId) {
+            AFRAME.scenes[0].emit('toggleArrange', {})
             moveFlowerToVase()
         })
 

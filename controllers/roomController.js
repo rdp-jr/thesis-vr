@@ -72,6 +72,12 @@ const room_show_db = (req, res) => {
   })
 }
 
+const room_show_db_points = (req, res) => {
+  db.all('SELECT * FROM points', (err, results) => {
+    res.json(results)
+  })
+}
+
 const join = (req, res) => {
   db.get(`SELECT * FROM rooms WHERE room_code = "${req.body.room_code}"`, (err, results) => {
     if (results) {
@@ -82,6 +88,49 @@ const join = (req, res) => {
   })
 }
 
+const post_session = (req, res) => {
+  console.log(req.body)
+  const room_id = req.body.room_id
+  var has_done_remote = (req.body.has_done_remote == 'true') ? 1 : 0
+  var has_done_radio = (req.body.has_done_radio == 'true') ? 1 : 0
+  var has_done_arrange = (req.body.has_done_arrange == 'true') ? 1 : 0
+  var has_done_water = (req.body.has_done_water == 'true') ? 1 : 0
+  const timestamp = Date.now()
+  console.log('post session saving...')
+  const notes = ""
+    
+  // console.log(has_done_remote)
+  // console.log(has_done_radio)
+  // console.log(has_done_arrange)
+  // console.log(has_done_water)
+
+  //db save
+  db.run(`INSERT INTO points (room_id, has_done_remote, has_done_radio, has_done_arrange, has_done_water, timestamp, notes) VALUES ("${room_id}", "${has_done_remote}", "${has_done_radio}","${has_done_arrange}","${has_done_water}","${timestamp}","${notes}")`)
+
+  const data = {room_id, has_done_remote, has_done_radio, has_done_arrange, has_done_water}
+
+
+  res.render('post-session', {...data})
+}
+
+const archive = (req, res) => {
+  const room_code = req.body.room_code
+  const secret_key = req.body.secret_key
+  db.all(`SELECT * FROM points WHERE room_id = "${req.body.room_code}"`, (err, results) => {
+    if (results) {
+      console.log(results)
+      res.render('archive', {'session':results, secret_key, room_code})
+    } else {
+      // res.render('room-join', {error: `Room ${req.body.room_code} does not exist`})
+      res.send('wait implement ko to mamaya')
+    }
+  })
+
+ 
+}
+  
+
+
 module.exports = {
-  edit, create, join, del, room_show_db
+  edit, create, join, del, room_show_db, post_session, room_show_db_points, archive
 }

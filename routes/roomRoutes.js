@@ -69,4 +69,50 @@ router.post('/delete', upload.none(), roomController.del)
 
 router.get('/db', roomController.room_show_db)
 
+router.get('/db-points', roomController.room_show_db_points)
+
+// function post_session_view(req, res) {
+//   const room_id = req.body.room_id
+//   const hasDoneRemote = req.body.has_done_remote
+//   const hasDoneRadio = req.body.has_done_radio
+//   const hasDoneArrange = req.body.has_done_arrange
+//   const hasDoneWater = req.body.has_done_water
+
+//   const data = {room_id, hasDoneRemote, hasDoneRadio, hasDoneArrange, hasDoneWater}
+
+
+//   res.render('post-session', {...data})
+// }
+
+
+
+router.post('/post-session', upload.none(), roomController.post_session)
+
+router.get('/post-session', function(req, res) {
+  // res.redirect('room-join')
+  res.send('wait')
+})
+
+router.get('/archive', function(req, res) {
+  res.send('wait lang din')
+})
+
+router.post('/archive', upload.none(), roomController.archive)
+
+
+
+// router.get('/post-session', function(req, res) {
+//   console.log(req.query)
+//   const encString = req.query.data
+//   const room_id = req.query.room_id
+//   const hasDoneRemote = encString.charAt(0) == '1' ? true : false
+//   const hasDoneRadio = encString.charAt(1) == '1' ? true : false
+//   const hasDoneArrange = encString.charAt(2) == '1' ? true : false
+//   const hasDoneWater = encString.charAt(3) == '1' ? true : false
+//   const data = {room_id, hasDoneRemote, hasDoneRadio, hasDoneArrange, hasDoneWater}
+//   res.render('post-session', {...data})
+// })
+
+// router.get('/post-session', get_processed_data, post_session_view)
+
 module.exports = router
