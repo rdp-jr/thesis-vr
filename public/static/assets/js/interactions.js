@@ -41,7 +41,7 @@ function clickWatercan() {
  }
 
  function clickRadio() {
-    AFRAME.scenes[0].emit('toggleRadio', {})
+   AFRAME.scenes[0].emit('toggleRadio', {})
    NAF.connection.broadcastDataGuaranteed('radio-clicked', true)
    var radio = document.getElementById('radio-music')
    if (!radio.paused) {
@@ -52,6 +52,63 @@ function clickWatercan() {
 
  }
 
+ function clickCamera() {
+   console.log('clicked camera!')
+  var state = document.getElementById('state')
+  var has_done_remote = state.getAttribute('has_done_remote')
+  var has_done_radio = state.getAttribute('has_done_radio')
+  var has_done_arrange = state.getAttribute('has_done_arrange')
+  var has_done_water = state.getAttribute('has_done_water')
+  var has_scrapbook_1 = state.getAttribute('has_scrapbook_1')
+  var has_scrapbook_2 = state.getAttribute('has_scrapbook_2')
+  var has_scrapbook_3 = state.getAttribute('has_scrapbook_3')
+  var has_scrapbook_4 = state.getAttribute('has_scrapbook_4')
+  
+  if ((has_done_remote  == 'true') && (has_scrapbook_1 == 'false')) {
+    console.log('getting scrapbook 1 !!')
+    moveScrapbook('1')
+  } else if ((has_done_radio  == 'true') && (has_scrapbook_2 == 'false')) {
+    moveScrapbook('2')
+  } else if ((has_done_arrange  == 'true') && (has_scrapbook_3 == 'false')) {
+    moveScrapbook('3')
+  } else if ((has_done_water == 'true')  && (has_scrapbook_4 == 'false')) {
+    moveScrapbook('4')
+  } else {
+    console.log('no scrapbook pictures for you')
+  }
+   
+}
+
+function moveScrapbook(id) {
+  console.log('moving scrapbook ' + id)
+  var scrapbook_picture = document.getElementById(`ent-scrapbook-${id}`)
+  console.log(scrapbook_picture)
+  var position = ""
+  switch(id) {
+    case "1":
+      position = "4.202 0.907 -1.436"
+      break;
+    case "2":
+      position = "4.787 0.907 -1.436"
+      break;
+    case "3":
+      position = "4.202 0.907 -0.928"
+      break;
+    case "4":
+      position = "4.787 0.907 -0.928"
+      break;
+    default:
+      break;
+  }
+  // scrapbook_picture.setAttribute('animation__move', `property: position; to: 4.202 0.907 -1.436; dur: 1500`)
+  var picture = document.getElementById(`scrapbook-${id}`)
+  scrapbook_picture.setAttribute('animation__move', `property: position; to: ${position}; dur: 1500`)
+  picture.setAttribute('animation__opacity', 'property: opacity; to: 1.0; dur: 1500')
+  AFRAME.scenes[0].emit(`toggleScrapbook${id}`, {})
+  NAF.connection.broadcastDataGuaranteed(`get-scrapbook-${id}`, true)
+
+}
+
  function exitRoom() {
    var state = document.getElementById('state')
    document.getElementById('has_done_remote').value = state.getAttribute('has_done_remote')
@@ -60,3 +117,5 @@ function clickWatercan() {
    document.getElementById('has_done_water').value = state.getAttribute('has_done_water')
    document.getElementById('post-session-form').submit()
  }
+
+

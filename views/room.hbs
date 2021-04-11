@@ -54,7 +54,11 @@
           has_done_remote:false,
           has_done_radio:false,
           has_done_arrange:false,
-          has_done_water:false
+          has_done_water:false,
+          has_scrapbook_1: false,
+          has_scrapbook_2: false,
+          has_scrapbook_3: false,
+          has_scrapbook_4: false
         },
       
         handlers: {
@@ -72,6 +76,19 @@
 
           toggleWater: function(state, action) {
             state.has_done_water = true
+          },
+
+          toggleScrapbook1: function(state, action) {
+            state.has_scrapbook_1 = true
+          },
+          toggleScrapbook2: function(state, action) {
+            state.has_scrapbook_2 = true
+          },
+          toggleScrapbook3: function(state, action) {
+            state.has_scrapbook_3 = true
+          },
+          toggleScrapbook4: function(state, action) {
+            state.has_scrapbook_4 = true
           }
 
 
@@ -153,6 +170,7 @@
           
           {{> remote }}
           {{> radio }}
+          {{> camera }}
 
 
           {{!-- must be a gltf-model --}}
@@ -163,12 +181,20 @@
           {{> bush }}
           {{> vase }}
           {{> watercan }}
-          {{> small_table }}
+          {{!-- {{> small_table }} --}}
+          {{> large_table }}
+          {{!-- {{> scrapbook }} --}}
+          
 
 
           {{> exit }}
 
         </a-entity>
+
+        {{> scrapbook_1 }}
+        {{> scrapbook_2 }}
+        {{> scrapbook_3 }}
+        {{> scrapbook_4 }}
 
         <a-sky color="#FFFDD0"></a-sky>
 
@@ -189,10 +215,16 @@
       <a-box id="addBlock" position="0.8 1 -2.650" scale="0.5 0.5 0.5" material="color: green"></a-box>
       <a-box id="minusBlock" position="-1 1 -2.650" scale="0.5 0.5 0.5" material="color: red"></a-box> --}}
 
-      <a-entity id="state" bind__gameState="has_done_remote: has_done_remote; 
+      <a-entity id="state" bind__gameState=
+      "has_done_remote: has_done_remote; 
       has_done_radio: has_done_radio;
       has_done_arrange: has_done_arrange;
-      has_done_water: has_done_water"></a-entity>
+      has_done_water: has_done_water;
+      has_scrapbook_1: has_scrapbook_1;
+      has_scrapbook_2: has_scrapbook_2;
+      has_scrapbook_3: has_scrapbook_3;
+      has_scrapbook_4: has_scrapbook_4
+      "></a-entity>
 
     </a-scene>
 

@@ -21,7 +21,7 @@ function get_asset_video_or_audio_path(room_code, field_name, type) {
     }
   }
 
-  console.log(ret)
+  // console.log(ret)
 
 
   return ret
@@ -33,13 +33,13 @@ function get_asset_image_path(room_code, field_name) {
   var path_final = `/rooms/${room_code}/${room_code}_${field_name}`
   var ret = ''
   if (fs2.existsSync(path + '.jpg')) {
-    console.log('jpg exist')
+    // console.log('jpg exist')
     ret = path_final + '.jpg'
   } else if (fs2.existsSync(path + '.jpeg')) {
-    console.log('jpeg  exist')
+    // console.log('jpeg  exist')
     ret = path_final + '.jpeg'
   } else {
-    console.log('using default ret')
+    // console.log('using default ret')
     ret = `/static/assets/img/default_${field_name}.jpg`
   }
 
