@@ -90,6 +90,7 @@
       adapter: easyrtc;
     "
     loading-screen="enabled:false"
+    cursor="rayOrigin:mouse"
     > 
       <a-assets>
         {{> common_assets }}
@@ -127,7 +128,7 @@
           camera
           position="0 1.6 0"
           look-controls="pointerLockEnabled: true"
-          cursor="rayOrigin:mouse"
+          
           wasd-controls="acceleration:10"
           super-hands="colliderEvent: raycaster-intersection;
             colliderEventProperty: els;
@@ -207,7 +208,7 @@
     <script src="/static/assets/js/networked-objects.component.js"></script>
     
 
-  {{> defaultSrc }}
+  {{!-- {{> defaultSrc }} --}}
   <script src="/static/assets/js/sync.system.js"></script>
 
   <script src="/static/assets/js/interactions.js"></script>

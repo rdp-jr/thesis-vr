@@ -21,8 +21,8 @@ const storage = multer.diskStorage({
 
     cb(null, file_name)
 
-    const path = `/rooms/${room_code}/${file_name}`
-    db.run(`UPDATE rooms SET ${file.fieldname} = "${path}" WHERE room_code = "${room_code}"`)
+    // const path = `/rooms/${room_code}/${file_name}`
+    // db.run(`UPDATE rooms SET ${file.fieldname} = "${path}" WHERE room_code = "${room_code}"`)
   }
 })  
 
@@ -54,11 +54,18 @@ router.get('/edit', function(req, res) {
 })
 
 const fields = [
-  {name: "image_1", maxCount: 1 },
-  {name: "image_2", maxCount: 1 },
-  {name: "video_1", maxCount: 1},
-  {name: "music_1", maxCount: 1}
+  {name: "video_1", maxCount: 1 },
+  {name: "music_1", maxCount: 1 },
+  {name: "wall_1", maxCount: 1 },
+  {name: "wall_2", maxCount: 1 },
+  {name: "book_cover_1", maxCount: 1 },
+  {name: "movie_poster_1", maxCount: 1 },
+  {name: "scrapbook_1", maxCount: 1 },
+  {name: "scrapbook_2", maxCount: 1 },
+  {name: "scrapbook_3", maxCount: 1 },
+  {name: "scrapbook_4", maxCount: 1 } 
 ]
+
 router.post('/edit', upload.fields(fields), roomController.edit)
 
 router.get('/delete', function(req, res) {
@@ -71,25 +78,9 @@ router.get('/db', roomController.room_show_db)
 
 router.get('/db-points', roomController.room_show_db_points)
 
-// function post_session_view(req, res) {
-//   const room_id = req.body.room_id
-//   const hasDoneRemote = req.body.has_done_remote
-//   const hasDoneRadio = req.body.has_done_radio
-//   const hasDoneArrange = req.body.has_done_arrange
-//   const hasDoneWater = req.body.has_done_water
-
-//   const data = {room_id, hasDoneRemote, hasDoneRadio, hasDoneArrange, hasDoneWater}
-
-
-//   res.render('post-session', {...data})
-// }
-
-
-
 router.post('/post-session', upload.none(), roomController.post_session)
 
 router.get('/post-session', function(req, res) {
-  // res.redirect('room-join')
   res.send('wait')
 })
 
@@ -98,21 +89,5 @@ router.get('/archive', function(req, res) {
 })
 
 router.post('/archive', upload.none(), roomController.archive)
-
-
-
-// router.get('/post-session', function(req, res) {
-//   console.log(req.query)
-//   const encString = req.query.data
-//   const room_id = req.query.room_id
-//   const hasDoneRemote = encString.charAt(0) == '1' ? true : false
-//   const hasDoneRadio = encString.charAt(1) == '1' ? true : false
-//   const hasDoneArrange = encString.charAt(2) == '1' ? true : false
-//   const hasDoneWater = encString.charAt(3) == '1' ? true : false
-//   const data = {room_id, hasDoneRemote, hasDoneRadio, hasDoneArrange, hasDoneWater}
-//   res.render('post-session', {...data})
-// })
-
-// router.get('/post-session', get_processed_data, post_session_view)
 
 module.exports = router

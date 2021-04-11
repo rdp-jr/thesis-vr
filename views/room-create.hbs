@@ -12,6 +12,10 @@
     {{#if error}}
       <div class="alert alert-danger">{{ error }}</div>
     {{/if}}
+
+    <h1>CREATE ROOM</h1>
+    <hr>
+
     <form method="POST" action="/room/create" enctype="multipart/form-data">
         <div class="form-group d-flex flex-column align-items-center justify-content-center p-5">
           <h2 class="font-weight-bold">Data Privacy</h2>
@@ -56,9 +60,9 @@
               I agree to the Data Privacy Policy
             </label>
           </div>
-          <input class="btn btn-lg mt-5 btn-custom w-25 mt-5 mx-auto" type="submit" value="Create Room">
+          <input class="btn btn-lg mt-5 btn-custom mt-5 mx-auto" type="submit" value="Create Room">
         </div>
     </form>
-    <div class="text-center"><a class="text-black" href="/room/join"><u>Join Room</u></a></div>
+    <div class="text-center"><a class="text-black" href="/get-started"><u>Go Back</u></a></div>
   {{/if}}
 </div>
