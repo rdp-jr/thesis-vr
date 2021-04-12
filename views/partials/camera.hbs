@@ -3,5 +3,7 @@
     scale="1 1 1" 
     rotation="0 0 0"
     position="6.171 -0.55 -3.241" 
-    onclick="clickCamera()">
+    onclick="clickCamera()"
+    animation__mouseenter="property: scale; to: 1.05 1.05 1.05; startEvents: mouseenter; dur: 500";
+    animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
 </a-gltf-model>
