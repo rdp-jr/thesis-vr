@@ -3,6 +3,7 @@ function clickWatercan() {
    NAF.connection.broadcastDataGuaranteed('watercan-clicked', true)
    growFlower()
    AFRAME.scenes[0].emit('increaseScore', {points: 50});
+   document.getElementById('sfx-water').play()
    
  }
 
@@ -16,6 +17,7 @@ function clickWatercan() {
    AFRAME.scenes[0].emit('toggleArrange', {})
    NAF.connection.broadcastDataGuaranteed('flower-clicked', true)
    moveFlowerToVase()
+   document.getElementById('sfx-flower').play()
  }
 
  function moveFlowerToVase() {
@@ -30,6 +32,7 @@ function clickWatercan() {
    console.log('clicked remote!')
     AFRAME.scenes[0].emit('toggleRemote', {})
    NAF.connection.broadcastDataGuaranteed('remote-clicked', true)
+   document.getElementById('sfx-remote').play()
   
    var vid = document.getElementById('tv-screen')
    if (!vid.paused) {
@@ -44,6 +47,8 @@ function clickWatercan() {
    AFRAME.scenes[0].emit('toggleRadio', {})
    NAF.connection.broadcastDataGuaranteed('radio-clicked', true)
    var radio = document.getElementById('radio-music')
+
+   document.getElementById('sfx-radio').play()
    if (!radio.paused) {
        radio.pause()
    } else {
@@ -54,6 +59,7 @@ function clickWatercan() {
 
  function clickCamera() {
    console.log('clicked camera!')
+   document.getElementById('sfx-camera').play()
   var state = document.getElementById('state')
   var has_done_remote = state.getAttribute('has_done_remote')
   var has_done_radio = state.getAttribute('has_done_radio')
