@@ -9,6 +9,7 @@ AFRAME.registerSystem('sync', {
 
         NAF.connection.subscribeToDataChannel('remote-clicked', function (senderId, type, data, targetId) {
             AFRAME.scenes[0].emit('toggleRemote', {})
+            document.getElementById('sfx-remote').play()
             if (!vid.paused) {
                 vid.pause()
             } else {
@@ -18,6 +19,7 @@ AFRAME.registerSystem('sync', {
 
         NAF.connection.subscribeToDataChannel('radio-clicked', function (senderId, type, data, targetId) {
             AFRAME.scenes[0].emit('toggleRadio', {})
+            document.getElementById('sfx-radio').play()
             if (!music.paused) {
                 music.pause()
             } else {
@@ -26,7 +28,7 @@ AFRAME.registerSystem('sync', {
         })
 
         NAF.connection.subscribeToDataChannel('watercan-clicked', function (senderId, type, data, targetId) {
-            AFRAME.scenes[0].emit('toggleWater', {})
+            AFRAME.scenes[0].emit('toggleWater', {})      
             growFlower()
         })
 

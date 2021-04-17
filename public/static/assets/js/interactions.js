@@ -3,12 +3,12 @@ function clickWatercan() {
    NAF.connection.broadcastDataGuaranteed('watercan-clicked', true)
    growFlower()
    AFRAME.scenes[0].emit('increaseScore', {points: 50});
-   document.getElementById('sfx-water').play()
+   
    
  }
 
  function growFlower() {
-   
+  document.getElementById('sfx-water').play()
    var flower = document.getElementById('ent-flower')
    flower.setAttribute('animation__grow', 'property: scale; to: 0.25 0.25 0.25; dur: 1500')
  }
@@ -17,11 +17,11 @@ function clickWatercan() {
    AFRAME.scenes[0].emit('toggleArrange', {})
    NAF.connection.broadcastDataGuaranteed('flower-clicked', true)
    moveFlowerToVase()
-   document.getElementById('sfx-flower').play()
+  
  }
 
  function moveFlowerToVase() {
-  
+  document.getElementById('sfx-flower').play()
    var flower = document.getElementById('ent-flower')
    flower.setAttribute('animation__move', 'property: position; to: 2.164 0.769 3.183; dur: 1500')
    flower.setAttribute('animation__rotate', 'property: rotation; to: 0 0 0; dur: 1500')
@@ -59,7 +59,7 @@ function clickWatercan() {
 
  function clickCamera() {
    console.log('clicked camera!')
-   document.getElementById('sfx-camera').play()
+  //  document.getElementById('sfx-camera').play()
   var state = document.getElementById('state')
   var has_done_remote = state.getAttribute('has_done_remote')
   var has_done_radio = state.getAttribute('has_done_radio')
@@ -92,6 +92,7 @@ function clickWatercan() {
 function moveScrapbook(id) {
   console.log('moving scrapbook ' + id)
   var scrapbook_picture = document.getElementById(`ent-scrapbook-${id}`)
+  document.getElementById('sfx-camera').play()
   console.log(scrapbook_picture)
   var position = ""
   switch(id) {
