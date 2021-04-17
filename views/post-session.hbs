@@ -16,6 +16,7 @@
       <th scope="col">Turn on Radio</th>
       <th scope="col">Arrange flowers</th>
       <th scope="col">Water plants</th>
+      <th scope="col">Scrapbook (optional)</th>
     </tr>
   </thead>
   <tbody>
@@ -43,6 +44,14 @@
       </td>
       <td>
         {{#if has_done_water}}
+        <i style="color:green" class="bi bi-check-circle-fill"></i>
+        {{else}}
+        <i style="color:red" class="bi bi-x-circle-fill"></i>
+        {{/if}}
+      </td>
+
+      <td>
+        {{#if has_done_scrapbook}}
         <i style="color:green" class="bi bi-check-circle-fill"></i>
         {{else}}
         <i style="color:red" class="bi bi-x-circle-fill"></i>

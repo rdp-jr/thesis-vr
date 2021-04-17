@@ -67,15 +67,19 @@ function clickWatercan() {
   if ((has_done_remote  == 'true') && (has_scrapbook_1 == 'false')) {
     console.log('getting scrapbook 1 !!')
     moveScrapbook('1')
-  } else if ((has_done_radio  == 'true') && (has_scrapbook_2 == 'false')) {
+  } 
+  
+  if ((has_done_radio  == 'true') && (has_scrapbook_2 == 'false')) {
     moveScrapbook('2')
-  } else if ((has_done_arrange  == 'true') && (has_scrapbook_3 == 'false')) {
+  } 
+  
+  if ((has_done_arrange  == 'true') && (has_scrapbook_3 == 'false')) {
     moveScrapbook('3')
-  } else if ((has_done_water == 'true')  && (has_scrapbook_4 == 'false')) {
+  } 
+  
+  if ((has_done_water == 'true')  && (has_scrapbook_4 == 'false')) {
     moveScrapbook('4')
-  } else {
-    console.log('no scrapbook pictures for you')
-  }
+  } 
    
 }
 
@@ -115,6 +119,19 @@ function moveScrapbook(id) {
    document.getElementById('has_done_radio').value = state.getAttribute('has_done_radio')
    document.getElementById('has_done_arrange').value = state.getAttribute('has_done_arrange')
    document.getElementById('has_done_water').value = state.getAttribute('has_done_water')
+
+  var scrapbook_1 = state.getAttribute('has_scrapbook_1')
+  var scrapbook_2 = state.getAttribute('has_scrapbook_2')
+  var scrapbook_3 = state.getAttribute('has_scrapbook_3')
+  var scrapbook_4 = state.getAttribute('has_scrapbook_4')
+
+  if ((scrapbook_1 == 'true') && (scrapbook_2 == 'true') && (scrapbook_3 == 'true') && (scrapbook_4 == 'true')) {
+    document.getElementById('has_done_scrapbook').value = 'true'
+  } else {
+    document.getElementById('has_done_scrapbook').value = 'false'
+  }
+
+
    document.getElementById('post-session-form').submit()
  }
 

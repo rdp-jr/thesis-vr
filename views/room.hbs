@@ -18,7 +18,7 @@
     {{!-- <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script> --}}
     <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
     <script src="https://unpkg.com/aframe-state-component@7.1.0/dist/aframe-state-component.min.js"></script>
-    
+    <script src="https://unpkg.com/aframe-animation-timeline-component@2.0.0/dist/aframe-animation-timeline-component.min.js"></script>
 
     
     {{!-- CSS + jQuery --}}
@@ -40,6 +40,7 @@
 
     {{!-- Custom Components --}}
     <script src="/static/assets/js/load-assets.component.js"></script>
+    <script src="/static/assets/js/spawn-outside.component.js"></script>
     {{!-- <script src="/static/assets/js/capture-mouse.component.js"></script>
     <script src="/static/assets/js/flower-grow.component.js"></script>
     <script src="/static/assets/js/flower-drop.component.js"></script>
@@ -142,6 +143,7 @@
       </a-assets>
 
         <a-entity id="player"
+          spawn-outside
           networked="template:#avatar-template;attachTemplateToLocal:false;"
           camera
           position="0 1.6 0"
@@ -238,6 +240,7 @@
         <input type="hidden" id="has_done_radio" name="has_done_radio" value="false">
         <input type="hidden" id="has_done_arrange" name="has_done_arrange" value="false">
         <input type="hidden" id="has_done_water" name="has_done_water" value="false">
+        <input type="hidden" id="has_done_scrapbook" name="has_done_scrapbook" value="false">
     </form>
 
     <script src="/static/assets/js/networked-objects.component.js"></script>

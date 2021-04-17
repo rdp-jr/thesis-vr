@@ -84,7 +84,7 @@ const edit = (req, res) => {
       // console.log(results)
       // const data = {...results, wall_1, wall_2}
       var room_code = results['room_code']
-      const data = {room_code, secret_key, video_1, music_1, wall_1, wall_2, movie_poster_1, book_cover_1, scrapbook_1, scrapbook_2, scrapbook_3, scrapbook_4}
+      const data = {patient_name: name, patient_age: age, room_code, secret_key, video_1, music_1, wall_1, wall_2, movie_poster_1, book_cover_1, scrapbook_1, scrapbook_2, scrapbook_3, scrapbook_4}
       // console.log(data)
       res.render('room-edit', data)
     } else {
@@ -170,14 +170,15 @@ const post_session = (req, res) => {
   var has_done_radio = (req.body.has_done_radio == 'true') ? 1 : 0
   var has_done_arrange = (req.body.has_done_arrange == 'true') ? 1 : 0
   var has_done_water = (req.body.has_done_water == 'true') ? 1 : 0
+  var has_done_scrapbook = (req.body.has_done_scrapbook == 'true') ? 1 : 0
   const timestamp = Date.now()
   console.log('post session saving...')
-  const notes = ""
+  
  
   //db save
-  db.run(`INSERT INTO points (room_id, has_done_remote, has_done_radio, has_done_arrange, has_done_water, timestamp, notes) VALUES ("${room_id}", "${has_done_remote}", "${has_done_radio}","${has_done_arrange}","${has_done_water}","${timestamp}","${notes}")`)
+  db.run(`INSERT INTO points (room_id, has_done_remote, has_done_radio, has_done_arrange, has_done_water, has_done_scrapbook, timestamp) VALUES ("${room_id}", "${has_done_remote}", "${has_done_radio}","${has_done_arrange}","${has_done_water}", "${has_done_scrapbook}", "${timestamp}")`)
 
-  const data = {room_id, has_done_remote, has_done_radio, has_done_arrange, has_done_water}
+  const data = {room_id, has_done_remote, has_done_radio, has_done_arrange, has_done_water, has_done_scrapbook}
 
 
   res.render('post-session', {...data})
@@ -191,8 +192,7 @@ const archive = (req, res) => {
       console.log(results)
       res.render('archive', {'session':results, secret_key, room_code})
     } else {
-      // res.render('room-join', {error: `Room ${req.body.room_code} does not exist`})
-      res.send('wait implement ko to mamaya')
+      res.redirect('room-secret')
     }
   })
 
