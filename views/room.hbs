@@ -112,7 +112,7 @@
     light="defaultLightsEnabled: false"
     animation-timeline__1="timeline: #myTimeline; loop: true"
     > 
-      <a-assets>
+      <a-assets timeout="60000">
         {{> common_assets }}
         
 
@@ -163,7 +163,7 @@
 
         <a-entity model-manager>
 
-          {{!-- {{> house }} --}}
+          {{> house }}
 
 
           {{!-- LIVING ROOM --}}
