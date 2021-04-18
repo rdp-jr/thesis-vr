@@ -11,6 +11,8 @@ function clickWatercan() {
   document.getElementById('sfx-water').play()
    var flower = document.getElementById('ent-flower')
    flower.setAttribute('animation__grow', 'property: scale; to: 0.25 0.25 0.25; dur: 1500')
+   flower.setAttribute('animation__adjust', 'property:position; to: 5.771 0.687 4.653; dur: 1500')
+
  }
 
  function clickFlower() {
@@ -25,6 +27,8 @@ function clickWatercan() {
    var flower = document.getElementById('ent-flower')
    flower.setAttribute('animation__move', 'property: position; to: 2.164 0.769 3.183; dur: 1500')
    flower.setAttribute('animation__rotate', 'property: rotation; to: 0 0 0; dur: 1500')
+
+   document.getElementById('hover-flower').setAttribute('visible', 'false')
  }
 
 

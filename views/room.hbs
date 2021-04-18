@@ -110,6 +110,7 @@
     loading-screen="enabled:false"
     cursor="rayOrigin:mouse"
     light="defaultLightsEnabled: false"
+    animation-timeline__1="timeline: #myTimeline; loop: true"
     > 
       <a-assets>
         {{> common_assets }}
@@ -162,7 +163,7 @@
 
         <a-entity model-manager>
 
-          {{> house }}
+          {{!-- {{> house }} --}}
 
 
           {{!-- LIVING ROOM --}}
@@ -201,7 +202,89 @@
 
         <a-sky color="#FFFDD0"></a-sky>
 
-      </a-entity>
+        {{!-- </a-entity> --}}
+
+      <a-timeline id="myTimeline">
+            <a-timeline-group>
+            <a-timeline-animation select="#hover-remote" name="start"></a-timeline-animation>
+            <a-timeline-animation select="#hover-radio" name="start"></a-timeline-animation>
+            <a-timeline-animation select="#hover-camera" name="start"></a-timeline-animation>
+            <a-timeline-animation select="#hover-can" name="start"></a-timeline-animation>
+            <a-timeline-animation select="#hover-flower" name="start"></a-timeline-animation>
+           
+           
+        </a-timeline-group>
+
+        <a-timeline-group>
+         
+          
+          <a-timeline-animation select="#hover-remote" name="end"></a-timeline-animation>
+          <a-timeline-animation select="#hover-radio" name="end"></a-timeline-animation>
+            <a-timeline-animation select="#hover-camera" name="end"></a-timeline-animation>
+            <a-timeline-animation select="#hover-can" name="end"></a-timeline-animation>
+            <a-timeline-animation select="#hover-flower" name="end"></a-timeline-animation>
+        </a-timeline-group>
+        </a-timeline>
+
+        <a-entity 
+      id="hover-remote"
+      visible="true"
+      position="3.210 1.194 0.902"
+      scale="0.05 0.05 0.05"
+      material="shader: flat; color: yellow"
+      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
+      animation__start="property: position; to: 3.210 1.139 0.902; dur: 1000"
+      animation__end="property: position; from: 3.210 1.139 0.902; to: 3.210 1.194 0.902; dur: 1000"
+     >
+    </a-entity>
+
+    <a-entity 
+      id="hover-radio"
+      visible="true"
+      position="2.823 1.707 -3.309"
+      scale="0.05 0.05 0.05"
+      material="shader: flat; color: yellow"
+      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
+      animation__start="property: position; to: 2.823 1.598 -3.309; dur: 1000"
+      animation__end="property: position; from: 2.823 1.598 -3.309; to: 2.823 1.707 -3.309; dur: 1000"
+     >
+    </a-entity>
+
+    <a-entity 
+      id="hover-camera"
+      visible="true"
+      position="5.277 1.6 -3.309"
+      scale="0.05 0.05 0.05"
+      material="shader: flat; color: yellow"
+      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
+      animation__start="property: position; to: 5.277 1.502 -3.309; dur: 1000"
+      animation__end="property: position; from: 5.277 1.502 -3.309; to: 5.277 1.6 -3.309; dur: 1000"
+     >
+    </a-entity>
+
+    <a-entity 
+      id="hover-can"
+      visible="true"
+      position="4.425 0.890 3.016"
+      scale="0.05 0.05 0.05"
+      material="shader: flat; color: yellow"
+      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
+      animation__start="property: position; to: 4.425 0.817 3.016; dur: 1000"
+      animation__end="property: position; from: 4.425 0.817 3.016; to: 4.425 0.890 3.016; dur: 1000"
+     >
+    </a-entity>
+
+    <a-entity 
+      id="hover-flower"
+      visible="true"
+      position="5.676 1.212 4.458"
+      scale="0.05 0.05 0.05"
+      material="shader: flat; color: yellow"
+      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
+      animation__start="property: position; to: 5.676 1.163 4.458; dur: 1000"
+      animation__end="property: position; from: 5.676 1.163 4.458; to: 5.676 1.212 4.458; dur: 1000"
+     >
+    </a-entity>
 
       
       
