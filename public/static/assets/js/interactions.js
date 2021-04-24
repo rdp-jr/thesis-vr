@@ -28,20 +28,44 @@ function clickWatercan() {
 
  }
 
- function clickFlower() {
+ function clickFlower(id) {
    AFRAME.scenes[0].emit('toggleArrange', {})
    NAF.connection.broadcastDataGuaranteed('flower-clicked', true)
-   moveFlowerToVase()
+   moveFlowerToVase(id)
   
  }
 
- function moveFlowerToVase() {
+ function moveFlowerToVase(id) {
   document.getElementById('sfx-flower').play()
-   var flower = document.getElementById('ent-flower')
-   flower.setAttribute('animation__move', 'property: position; to: 2.164 0.769 3.183; dur: 1500')
-   flower.setAttribute('animation__rotate', 'property: rotation; to: 0 0 0; dur: 1500')
+   var flower = document.getElementById(`ent-flower${id}`)
+  //  flower.setAttribute('animation__move', 'property: position; to: 2.164 0.769 3.183; dur: 1500')
+  //  flower.setAttribute('animation__rotate', 'property: rotation; to: 0 0 0; dur: 1500')
 
-   document.getElementById('hover-flower').setAttribute('visible', 'false')
+   var position = ""
+  //  var rotation = ""
+   switch(id) {
+     case "1":
+       position = "6.657 1.095 1.774"
+       break;
+     case "2":
+       position = "6.585 0.657 1.754"
+       break;
+     case "3":
+       position = "6.605 1.060 1.663"
+       break;
+     case "4":
+       position = "6.519 0.961 1.673"
+       break;
+     default:
+       break;
+   }
+   // scrapbook_picture.setAttribute('animation__move', `property: position; to: 4.202 0.907 -1.436; dur: 1500`)
+
+   flower.setAttribute('animation__move', `property: position; to: ${position}; dur: 1500`)
+  //  flower.setAttribute('animation__rotate', `property: rotation; to: ${rotation}; dur: 1500`)
+
+  //  add hover
+  //  document.getElementById(`hover-flower${id}`).setAttribute('visible', 'false')
  }
 
 

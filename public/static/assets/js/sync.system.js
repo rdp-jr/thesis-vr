@@ -2,10 +2,6 @@ AFRAME.registerSystem('sync', {
     init: function() {
         var vid = document.getElementById('tv-screen')
         var music = document.getElementById('radio-music')
-        var scrapbook_1 = document.getElementById('scrapbook-1')
-        var scrapbook_2 = document.getElementById('scrapbook-2')
-        var scrapbook_3 = document.getElementById('scrapbook-3')
-        var scrapbook_4 = document.getElementById('scrapbook-4')
 
         NAF.connection.subscribeToDataChannel('remote-clicked', function (senderId, type, data, targetId) {
             AFRAME.scenes[0].emit('toggleRemote', {})
