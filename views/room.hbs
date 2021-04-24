@@ -261,7 +261,10 @@
             <a-timeline-animation select="#hover-radio" name="start"></a-timeline-animation>
             <a-timeline-animation select="#hover-camera" name="start"></a-timeline-animation>
             <a-timeline-animation select="#hover-can" name="start"></a-timeline-animation>
-            <a-timeline-animation select="#hover-flower" name="start"></a-timeline-animation>
+            <a-timeline-animation select="#hover-flower1" name="start"></a-timeline-animation>
+            <a-timeline-animation select="#hover-flower2" name="start"></a-timeline-animation>
+            <a-timeline-animation select="#hover-flower3" name="start"></a-timeline-animation>
+            <a-timeline-animation select="#hover-flower4" name="start"></a-timeline-animation>
            
            
         </a-timeline-group>
@@ -273,7 +276,10 @@
           <a-timeline-animation select="#hover-radio" name="end"></a-timeline-animation>
             <a-timeline-animation select="#hover-camera" name="end"></a-timeline-animation>
             <a-timeline-animation select="#hover-can" name="end"></a-timeline-animation>
-            <a-timeline-animation select="#hover-flower" name="end"></a-timeline-animation>
+            <a-timeline-animation select="#hover-flower1" name="end"></a-timeline-animation>
+            <a-timeline-animation select="#hover-flower2" name="end"></a-timeline-animation>
+            <a-timeline-animation select="#hover-flower3" name="end"></a-timeline-animation>
+            <a-timeline-animation select="#hover-flower4" name="end"></a-timeline-animation>
         </a-timeline-group>
         </a-timeline>
 
@@ -326,16 +332,54 @@
     </a-entity>
 
     <a-entity 
-      id="hover-flower"
+      id="hover-flower1"
       visible="true"
-      position="5.676 1.212 4.458"
+      position="5.349 1.374 1.650"
       scale="0.05 0.05 0.05"
       material="shader: flat; color: yellow"
       geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 5.676 1.163 4.458; dur: 1000"
-      animation__end="property: position; from: 5.676 1.163 4.458; to: 5.676 1.212 4.458; dur: 1000"
+      animation__start="property: position; to: 5.349 1.317 1.650; dur: 1000"
+      animation__end="property: position; from: 5.349 1.317 1.650; to: 5.349 1.374 1.650; dur: 1000"
      >
     </a-entity>
+
+    <a-entity 
+      id="hover-flower2"
+      visible="true"
+      position="4.759 1.374 1.650"
+      scale="0.05 0.05 0.05"
+      material="shader: flat; color: yellow"
+      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
+      animation__start="property: position; to: 4.759 1.317 1.650; dur: 1000"
+      animation__end="property: position; from: 4.759 1.317 1.650; to: 4.759 1.374 1.650; dur: 1000"
+     >
+    </a-entity>
+
+    <a-entity 
+      id="hover-flower3"
+      visible="true"
+      position="3.938 1.374 1.650"
+      scale="0.05 0.05 0.05"
+      material="shader: flat; color: yellow"
+      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
+      animation__start="property: position; to: 3.938 1.317 1.650; dur: 1000"
+      animation__end="property: position; from: 3.938 1.317 1.650; to: 3.938 1.374 1.650; dur: 1000"
+     >
+    </a-entity>
+
+    <a-entity 
+      id="hover-flower4"
+      visible="true"
+      position="3.236 1.374 1.650"
+      scale="0.05 0.05 0.05"
+      material="shader: flat; color: yellow"
+      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
+      animation__start="property: position; to: 3.236 1.317 1.650; dur: 1000"
+      animation__end="property: position; from: 3.236 1.317 1.650; to: 3.236 1.374 1.650; dur: 1000"
+     >
+    </a-entity>
+
+    
 
       
       
@@ -366,6 +410,39 @@
      <a-entity light="type: ambient; color: #BBB; intensity: 0.2"></a-entity>
      <a-entity light="type: point; intensity: 0.75; distance: 50; decay: 2"
           position="2.735 2.901 -3.713"></a-entity>
+
+
+
+
+    <a-image id="wall-1"
+      src="#wall_1"
+      position="0.655 1.981 -7.939"
+      rotation="0 0 0">
+      </a-image>
+
+      <a-image id="wall-2"
+      src="#wall_2"
+      position="3.997 1.916 -7.960"
+      rotation="0 0 0">
+      </a-image>
+
+      <a-image id="movie-poster-1"
+      src="#movie_poster_1"
+      position="1.876 1.764 -7.960"
+      rotation="0 0 0" 
+      scale="0.750 1 1">
+
+      </a-image>
+
+      <a-image id="book-cover-1"
+      src="#book_cover_1"
+      position="4.525 0.735 -2.380"
+      rotation="-90 -90 0" 
+      scale="0.45 0.5 1"
+     
+      >
+
+      </a-image>
 
     </a-scene>
 

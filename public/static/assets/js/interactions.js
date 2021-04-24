@@ -11,7 +11,7 @@ function clickWatercan() {
    var watercan = document.getElementById('water-can')
    watercan.setAttribute('animation__up', 'property: position; to: 2.307 1.516 1.611; dur: 1000')
    watercan.setAttribute('animation__tilt_down', 'property: rotation; to: 0 180 30; dur: 1000')
-   watercan.setAttribute('animation__water_1', 'property: position; to: 4.925 1.516 1.611; dur: 2500; startEvents: animationcomplete__up')
+   watercan.setAttribute('animation__water_1', 'property: position; to: 6.287 1.516 1.611; dur: 2500; startEvents: animationcomplete__up')
    watercan.setAttribute('animation__water_2', 'property: position; to: 2.307 1.516 1.611; dur: 2500; startEvents: animationcomplete__water_1')
    watercan.setAttribute('animation__tilt_up', 'property: rotation; to: 0 180 0; dur: 1000; startEvents: animationcomplete__water_2')
    watercan.setAttribute('animation__down', 'property: position; to: 2.307 0.266 1.611; dur: 1000; startEvents: animationcomplete__water_2')
@@ -26,14 +26,15 @@ function clickWatercan() {
    var flower2 = document.getElementById('ent-flower2')
    var flower3 = document.getElementById('ent-flower3')
    var flower4 = document.getElementById('ent-flower4')
+   
    flower1.setAttribute('animation__grow', 'property: scale; to: 0.1 0.1 0.1; dur: 5000')
   //  flower1.setAttribute('animation__adjust', 'property:position; to: 5.771 0.687 4.653; dur: 5000')
 
    flower2.setAttribute('animation__grow', 'property: scale; to: 0.05 0.05 0.05; dur: 5000')
-   flower2.setAttribute('animation__adjust', 'property:position; to: 4.812 0.516 1.698; dur: 5000')
+  //  flower2.setAttribute('animation__adjust', 'property:position; to: 4.812 0.516 1.698; dur: 5000')
 
    flower3.setAttribute('animation__grow', 'property: scale; to: 0.1 0.1 0.1; dur: 5000')
-   flower3.setAttribute('animation__adjust', 'property:position; to: 3.962 0.921 1.675; dur: 5000')
+  //  flower3.setAttribute('animation__adjust', 'property:position; to: 3.962 0.921 1.675; dur: 5000')
   
 
    flower4.setAttribute('animation__grow', 'property: scale; to: 0.125 0.125 0.125; dur: 5000')
@@ -72,13 +73,14 @@ function clickWatercan() {
      default:
        break;
    }
-   // scrapbook_picture.setAttribute('animation__move', `property: position; to: 4.202 0.907 -1.436; dur: 1500`)
 
-   flower.setAttribute('animation__move', `property: position; to: ${position}; dur: 1500`)
-  //  flower.setAttribute('animation__rotate', `property: rotation; to: ${rotation}; dur: 1500`)
+   var coord = position.split(' ')
+   var newCoord = parseFloat(coord[1]) + 0.5
+ 
+   flower.setAttribute('animation__up', `property: position; to: ${coord[0]} ${newCoord} ${coord[2]}; dur: 1500`)
+   flower.setAttribute('animation__move', `property: position; to: ${position}; dur: 1500; startEvents: animationcomplete__up`)
 
-  //  add hover
-  //  document.getElementById(`hover-flower${id}`).setAttribute('visible', 'false')
+   document.getElementById(`hover-flower${id}`).setAttribute('visible', 'false')
  }
 
 
@@ -151,16 +153,16 @@ function moveScrapbook(id) {
   var position = ""
   switch(id) {
     case "1":
-      position = "4.087 0 -6.129"
+      position = "4.087 0.85 -6.129"
       break;
     case "2":
-      position = "4.260 0 -5.847"
+      position = "4.260 0.85 -5.847"
       break;
     case "3":
-      position = "4.202 0 -5.055"
+      position = "4.202 0.85 -5.055"
       break;
     case "4":
-      position = "4.160 0 -4.367"
+      position = "4.160 0.85 -4.367"
       break;
     default:
       break;
