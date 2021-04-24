@@ -1,9 +1,22 @@
 function clickWatercan() {
+  var state = document.getElementById('state')
+  var check = state.getAttribute('has_done_water')
+  if (check == 'true') {
+    return
+  }
+
     AFRAME.scenes[0].emit('toggleWater', {})
    NAF.connection.broadcastDataGuaranteed('watercan-clicked', true)
    growFlower()
-   AFRAME.scenes[0].emit('increaseScore', {points: 50});
+   var watercan = document.getElementById('water-can')
+   watercan.setAttribute('animation__up', 'property: position; to: 2.307 1.516 1.611; dur: 1000')
+   watercan.setAttribute('animation__tilt_down', 'property: rotation; to: 0 180 30; dur: 1000')
+   watercan.setAttribute('animation__water_1', 'property: position; to: 4.925 1.516 1.611; dur: 2500; startEvents: animationcomplete__up')
+   watercan.setAttribute('animation__water_2', 'property: position; to: 2.307 1.516 1.611; dur: 2500; startEvents: animationcomplete__water_1')
+   watercan.setAttribute('animation__tilt_up', 'property: rotation; to: 0 180 0; dur: 1000; startEvents: animationcomplete__water_2')
+   watercan.setAttribute('animation__down', 'property: position; to: 2.307 0.266 1.611; dur: 1000; startEvents: animationcomplete__water_2')
    
+   document.getElementById(`hover-can`).setAttribute('visible', 'false')
    
  }
 
