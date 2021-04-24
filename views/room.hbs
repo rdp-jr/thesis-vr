@@ -113,6 +113,9 @@
     animation-timeline__1="timeline: #myTimeline; loop: true"
     > 
       <a-assets timeout="60000">
+        <img id="sky" src="/static/assets/img/sky.jpg" crossorigin="anonymous"></img>
+        <img id="ground" 
+        src="/static/assets/img/grass.jpg" crossorigin="anonymous">
         {{> common_assets }}
         
 
@@ -247,7 +250,8 @@
         {{> scrapbook_3 }}
         {{> scrapbook_4 }}
 
-        <a-sky color="#6EBAA7"></a-sky>
+        <a-sky src="#sky"></a-sky>
+        <a-plane material="src:#ground; repeat: 20 20; shader: flat" height="100" width="100" rotation="-90 0 0"></a-plane>
 
         {{!-- </a-entity> --}}
 
@@ -276,36 +280,36 @@
         <a-entity 
       id="hover-remote"
       visible="true"
-      position="3.210 1.194 0.902"
+      position="3.711 1.038 -4.480"
       scale="0.05 0.05 0.05"
       material="shader: flat; color: yellow"
       geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 3.210 1.139 0.902; dur: 1000"
-      animation__end="property: position; from: 3.210 1.139 0.902; to: 3.210 1.194 0.902; dur: 1000"
+      animation__start="property: position; to: 3.711 0.960 -4.480; dur: 1000"
+      animation__end="property: position; from: 3.711 0.960 -4.480; to: 3.711 1.038 -4.480; dur: 1000"
      >
     </a-entity>
 
     <a-entity 
       id="hover-radio"
       visible="true"
-      position="2.823 1.707 -3.309"
+      position="5.331 1.966 -2.402"
       scale="0.05 0.05 0.05"
       material="shader: flat; color: yellow"
       geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 2.823 1.598 -3.309; dur: 1000"
-      animation__end="property: position; from: 2.823 1.598 -3.309; to: 2.823 1.707 -3.309; dur: 1000"
+      animation__start="property: position; to: 5.331 1.870 -2.402; dur: 1000"
+      animation__end="property: position; from: 5.331 1.870 -2.402; to: 5.331 1.966 -2.402; dur: 1000"
      >
     </a-entity>
 
     <a-entity 
       id="hover-camera"
       visible="true"
-      position="5.277 1.6 -3.309"
+      position="4.152 1.595 -2.457"
       scale="0.05 0.05 0.05"
       material="shader: flat; color: yellow"
       geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 5.277 1.502 -3.309; dur: 1000"
-      animation__end="property: position; from: 5.277 1.502 -3.309; to: 5.277 1.6 -3.309; dur: 1000"
+      animation__start="property: position; to: 4.152 1.528 -2.457; dur: 1000"
+      animation__end="property: position; from: 4.152 1.528 -2.457; to: 4.152 1.595 -2.457; dur: 1000"
      >
     </a-entity>
 
@@ -359,7 +363,9 @@
       has_scrapbook_4: has_scrapbook_4
       "></a-entity>
 
-     <a-entity light="type: ambient; color: #BBB"></a-entity>
+     <a-entity light="type: ambient; color: #BBB; intensity: 0.2"></a-entity>
+     <a-entity light="type: point; intensity: 0.75; distance: 50; decay: 2"
+          position="2.735 2.901 -3.713"></a-entity>
 
     </a-scene>
 

@@ -9,9 +9,22 @@ function clickWatercan() {
 
  function growFlower() {
   document.getElementById('sfx-water').play()
-   var flower = document.getElementById('ent-flower')
-   flower.setAttribute('animation__grow', 'property: scale; to: 0.25 0.25 0.25; dur: 1500')
-   flower.setAttribute('animation__adjust', 'property:position; to: 5.771 0.687 4.653; dur: 1500')
+   var flower1 = document.getElementById('ent-flower1')
+   var flower2 = document.getElementById('ent-flower2')
+   var flower3 = document.getElementById('ent-flower3')
+   var flower4 = document.getElementById('ent-flower4')
+   flower1.setAttribute('animation__grow', 'property: scale; to: 0.1 0.1 0.1; dur: 5000')
+  //  flower1.setAttribute('animation__adjust', 'property:position; to: 5.771 0.687 4.653; dur: 5000')
+
+   flower2.setAttribute('animation__grow', 'property: scale; to: 0.05 0.05 0.05; dur: 5000')
+   flower2.setAttribute('animation__adjust', 'property:position; to: 4.812 0.516 1.698; dur: 5000')
+
+   flower3.setAttribute('animation__grow', 'property: scale; to: 0.1 0.1 0.1; dur: 5000')
+   flower3.setAttribute('animation__adjust', 'property:position; to: 3.962 0.921 1.675; dur: 5000')
+  
+
+   flower4.setAttribute('animation__grow', 'property: scale; to: 0.125 0.125 0.125; dur: 5000')
+  //  flower4.setAttribute('animation__adjust', 'property:position; to: 5.771 0.687 4.653; dur: 1500')
 
  }
 
@@ -101,16 +114,16 @@ function moveScrapbook(id) {
   var position = ""
   switch(id) {
     case "1":
-      position = "4.202 0.907 -1.436"
+      position = "4.087 0 -6.129"
       break;
     case "2":
-      position = "-1.646 0 -7.355"
+      position = "4.260 0 -5.847"
       break;
     case "3":
-      position = "4.202 0.907 -0.928"
+      position = "4.202 0 -5.055"
       break;
     case "4":
-      position = "4.787 0.907 -0.928"
+      position = "4.160 0 -4.367"
       break;
     default:
       break;
