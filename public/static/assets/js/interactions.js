@@ -104,7 +104,7 @@ function moveScrapbook(id) {
       position = "4.202 0.907 -1.436"
       break;
     case "2":
-      position = "4.787 0.907 -1.436"
+      position = "-1.646 0 -7.355"
       break;
     case "3":
       position = "4.202 0.907 -0.928"

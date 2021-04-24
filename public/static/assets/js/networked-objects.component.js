@@ -11,14 +11,14 @@ NAF.schemas.add({
   ]
 })
 
-NAF.schemas.add({
-  template: '#flower-template',
-  components: [
-    'position',
-    'rotation',
-    'scale'
-  ]
-})
+// NAF.schemas.add({
+//   template: '#flower-template',
+//   components: [
+//     'position',
+//     'rotation',
+//     'scale'
+//   ]
+// })
 
 // last person to go in the room gets ownership
 NAF.connection.onConnect(() => {
