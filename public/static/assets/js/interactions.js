@@ -5,19 +5,23 @@ function clickWatercan() {
     return
   }
 
-    AFRAME.scenes[0].emit('toggleWater', {})
-   NAF.connection.broadcastDataGuaranteed('watercan-clicked', true)
-   growFlower()
-   var watercan = document.getElementById('water-can')
-   watercan.setAttribute('animation__up', 'property: position; to: 2.307 1.516 1.611; dur: 1000')
-   watercan.setAttribute('animation__tilt_down', 'property: rotation; to: 0 180 30; dur: 1000')
-   watercan.setAttribute('animation__water_1', 'property: position; to: 6.287 1.516 1.611; dur: 2500; startEvents: animationcomplete__up')
-   watercan.setAttribute('animation__water_2', 'property: position; to: 2.307 1.516 1.611; dur: 2500; startEvents: animationcomplete__water_1')
-   watercan.setAttribute('animation__tilt_up', 'property: rotation; to: 0 180 0; dur: 1000; startEvents: animationcomplete__water_2')
-   watercan.setAttribute('animation__down', 'property: position; to: 2.307 0.266 1.611; dur: 1000; startEvents: animationcomplete__water_2')
+  AFRAME.scenes[0].emit('toggleWater', {})
+  NAF.connection.broadcastDataGuaranteed('watercan-clicked', true)
+  growFlower()
+  animateWatercan()
    
-   document.getElementById(`hover-can`).setAttribute('visible', 'false')
-   
+ }
+
+ function animateWatercan() {
+  var watercan = document.getElementById('water-can')
+  watercan.setAttribute('animation__up', 'property: position; to: 2.307 1.516 1.611; dur: 1000')
+  watercan.setAttribute('animation__tilt_down', 'property: rotation; to: 0 180 30; dur: 1000')
+  watercan.setAttribute('animation__water_1', 'property: position; to: 6.287 1.516 1.611; dur: 2500; startEvents: animationcomplete__up')
+  watercan.setAttribute('animation__water_2', 'property: position; to: 2.307 1.516 1.611; dur: 2500; startEvents: animationcomplete__water_1')
+  watercan.setAttribute('animation__tilt_up', 'property: rotation; to: 0 180 0; dur: 1000; startEvents: animationcomplete__water_2')
+  watercan.setAttribute('animation__down', 'property: position; to: 2.307 0.266 1.611; dur: 1000; startEvents: animationcomplete__water_2')
+  
+  document.getElementById(`hover-can`).setAttribute('visible', 'false')
  }
 
  function growFlower() {
@@ -44,7 +48,7 @@ function clickWatercan() {
 
  function clickFlower(id) {
    AFRAME.scenes[0].emit('toggleArrange', {})
-   NAF.connection.broadcastDataGuaranteed('flower-clicked', true)
+   NAF.connection.broadcastDataGuaranteed(`flower-clicked${id}`, true)
    moveFlowerToVase(id)
   
  }
@@ -52,23 +56,21 @@ function clickWatercan() {
  function moveFlowerToVase(id) {
   document.getElementById('sfx-flower').play()
    var flower = document.getElementById(`ent-flower${id}`)
-  //  flower.setAttribute('animation__move', 'property: position; to: 2.164 0.769 3.183; dur: 1500')
-  //  flower.setAttribute('animation__rotate', 'property: rotation; to: 0 0 0; dur: 1500')
 
    var position = ""
-  //  var rotation = ""
+
    switch(id) {
      case "1":
-       position = "6.657 1.095 1.774"
+       position = "6.730 1.152 1.774"
        break;
      case "2":
-       position = "6.585 0.657 1.754"
+       position = "6.585 0.657 1.826"
        break;
      case "3":
-       position = "6.605 1.060 1.663"
+       position = "6.688 1.060 1.785"
        break;
      case "4":
-       position = "6.519 0.961 1.673"
+       position = "6.607 1.022 1.710"
        break;
      default:
        break;
@@ -91,10 +93,13 @@ function clickWatercan() {
    document.getElementById('sfx-remote').play()
   
    var vid = document.getElementById('tv-screen')
+   var bg = document.getElementById("bg-music")
    if (!vid.paused) {
        vid.pause()
+       bg.play()
    } else {
        vid.play()
+       bg.pause()
    }
 
  }
@@ -103,19 +108,23 @@ function clickWatercan() {
    AFRAME.scenes[0].emit('toggleRadio', {})
    NAF.connection.broadcastDataGuaranteed('radio-clicked', true)
    var radio = document.getElementById('radio-music')
+   var bg = document.getElementById("bg-music")
 
    document.getElementById('sfx-radio').play()
    if (!radio.paused) {
        radio.pause()
+       bg.play()
    } else {
        radio.play()
+       bg.pause()
    }
 
  }
 
  function clickCamera() {
    console.log('clicked camera!')
-  //  document.getElementById('sfx-camera').play()
+   NAF.connection.broadcastDataGuaranteed('camera-clicked', true)
+   document.getElementById('sfx-camera').play()
   var state = document.getElementById('state')
   var has_done_remote = state.getAttribute('has_done_remote')
   var has_done_radio = state.getAttribute('has_done_radio')
@@ -148,21 +157,26 @@ function clickWatercan() {
 function moveScrapbook(id) {
   console.log('moving scrapbook ' + id)
   var scrapbook_picture = document.getElementById(`ent-scrapbook-${id}`)
-  document.getElementById('sfx-camera').play()
+ 
   console.log(scrapbook_picture)
   var position = ""
+  var rotation = ""
   switch(id) {
     case "1":
-      position = "4.087 0.85 -6.129"
+      position = "4.416 1.199 -5.899"
+      rotation = "-10 0 0"
       break;
     case "2":
-      position = "4.260 0.85 -5.847"
+      position = "3.945 1.180 -5.899"
+      rotation = "-10 0 0"
       break;
     case "3":
-      position = "4.202 0.85 -5.055"
+      position = "4.454 1.187 -5.190"
+      rotation = "10 0 0"
       break;
     case "4":
-      position = "4.160 0.85 -4.367"
+      position = "4.006 1.188 -5.194"
+      rotation = "10 0 0"
       break;
     default:
       break;
@@ -170,6 +184,7 @@ function moveScrapbook(id) {
   // scrapbook_picture.setAttribute('animation__move', `property: position; to: 4.202 0.907 -1.436; dur: 1500`)
   var picture = document.getElementById(`scrapbook-${id}`)
   scrapbook_picture.setAttribute('animation__move', `property: position; to: ${position}; dur: 1500`)
+  scrapbook_picture.setAttribute('animation__rotate', `property: rotation; to: ${rotation}; dur: 1500`)
   picture.setAttribute('animation__opacity', 'property: opacity; to: 1.0; dur: 1500')
   AFRAME.scenes[0].emit(`toggleScrapbook${id}`, {})
   NAF.connection.broadcastDataGuaranteed(`get-scrapbook-${id}`, true)

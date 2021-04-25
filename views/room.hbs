@@ -170,6 +170,7 @@
       
           {{!-- GARDEN --}}
           {{> watercan }}
+          {{> vase }}
           {{> flower1 }}
           {{> flower2 }}
           {{> flower3 }}
@@ -218,101 +219,7 @@
         </a-timeline-group>
         </a-timeline>
 
-        <a-entity 
-      id="hover-remote"
-      visible="true"
-      position="3.711 1.038 -4.480"
-      scale="0.05 0.05 0.05"
-      material="shader: flat; color: yellow"
-      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 3.711 0.960 -4.480; dur: 1000"
-      animation__end="property: position; from: 3.711 0.960 -4.480; to: 3.711 1.038 -4.480; dur: 1000"
-     >
-    </a-entity>
-
-    <a-entity 
-      id="hover-radio"
-      visible="true"
-      position="5.331 1.966 -2.402"
-      scale="0.05 0.05 0.05"
-      material="shader: flat; color: yellow"
-      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 5.331 1.870 -2.402; dur: 1000"
-      animation__end="property: position; from: 5.331 1.870 -2.402; to: 5.331 1.966 -2.402; dur: 1000"
-     >
-    </a-entity>
-
-    <a-entity 
-      id="hover-camera"
-      visible="true"
-      position="4.152 1.595 -2.457"
-      scale="0.05 0.05 0.05"
-      material="shader: flat; color: yellow"
-      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 4.152 1.528 -2.457; dur: 1000"
-      animation__end="property: position; from: 4.152 1.528 -2.457; to: 4.152 1.595 -2.457; dur: 1000"
-     >
-    </a-entity>
-
-    <a-entity 
-      id="hover-can"
-      visible="true"
-      position="2.332 0.890 1.608"
-      scale="0.05 0.05 0.05"
-      material="shader: flat; color: yellow"
-      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 2.332 0.817 1.608; dur: 1000"
-      animation__end="property: position; from: 2.332 0.817 1.608; to: 2.332 0.890 1.608; dur: 1000"
-     >
-    </a-entity>
-
-    <a-entity 
-      id="hover-flower1"
-      visible="true"
-      position="5.349 1.374 1.650"
-      scale="0.05 0.05 0.05"
-      material="shader: flat; color: yellow"
-      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 5.349 1.317 1.650; dur: 1000"
-      animation__end="property: position; from: 5.349 1.317 1.650; to: 5.349 1.374 1.650; dur: 1000"
-     >
-    </a-entity>
-
-    <a-entity 
-      id="hover-flower2"
-      visible="true"
-      position="4.759 1.374 1.650"
-      scale="0.05 0.05 0.05"
-      material="shader: flat; color: yellow"
-      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 4.759 1.317 1.650; dur: 1000"
-      animation__end="property: position; from: 4.759 1.317 1.650; to: 4.759 1.374 1.650; dur: 1000"
-     >
-    </a-entity>
-
-    <a-entity 
-      id="hover-flower3"
-      visible="true"
-      position="3.938 1.374 1.650"
-      scale="0.05 0.05 0.05"
-      material="shader: flat; color: yellow"
-      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 3.938 1.317 1.650; dur: 1000"
-      animation__end="property: position; from: 3.938 1.317 1.650; to: 3.938 1.374 1.650; dur: 1000"
-     >
-    </a-entity>
-
-    <a-entity 
-      id="hover-flower4"
-      visible="true"
-      position="3.236 1.374 1.650"
-      scale="0.05 0.05 0.05"
-      material="shader: flat; color: yellow"
-      geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 3.236 1.317 1.650; dur: 1000"
-      animation__end="property: position; from: 3.236 1.317 1.650; to: 3.236 1.374 1.650; dur: 1000"
-     >
-    </a-entity>
+        {{> hover }}
 
     
 
@@ -320,9 +227,7 @@
       
 
 
-      <a-entity id="test-flower" 
-      networked="template:#flower-template;attachTemplateToLocal:true;networkId:remote;persistent:true;owner:scene"
-      ></a-entity>
+     
 
 
 
@@ -351,19 +256,19 @@
 
     <a-image id="wall-1"
       src="#wall_1"
-      position="0.655 1.981 -7.939"
+      position="0.655 1.981 -7.935"
       rotation="0 0 0">
       </a-image>
 
       <a-image id="wall-2"
       src="#wall_2"
-      position="3.997 1.916 -7.960"
+      position="3.481 1.916 -7.935"
       rotation="0 0 0">
       </a-image>
 
       <a-image id="movie-poster-1"
       src="#movie_poster_1"
-      position="1.876 1.764 -7.960"
+      position="2.093 1.764 -7.960"
       rotation="0 0 0" 
       scale="0.750 1 1">
 
@@ -371,9 +276,9 @@
 
       <a-image id="book-cover-1"
       src="#book_cover_1"
-      position="4.525 0.735 -2.380"
-      rotation="-90 -90 0" 
-      scale="0.45 0.5 1"
+      position="4.511 0.668 -2.311"
+      rotation="-90 -89.370 2.330" 
+      scale="0.340 0.480 1"
      
       >
 
@@ -398,5 +303,17 @@
   <script src="/static/assets/js/sync.system.js"></script>
 
   <script src="/static/assets/js/interactions.js"></script>
+
+  <audio src="/static/assets/audio/bg.mp3" id="bg-music" loop="loop"></audio>
+
+  <script>
+    window.onload=function(){
+        var bg = document.getElementById("bg-music")
+        bg.volume = 0.05
+      bg.play();
+    }
+  </script>
+
+
   </body>
 </html>

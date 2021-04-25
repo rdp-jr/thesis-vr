@@ -222,12 +222,12 @@
         <a-entity 
       id="hover-remote"
       visible="true"
-      position="3.711 1.038 -4.480"
+      position="3.880 1.295 -4.498"
       scale="0.05 0.05 0.05"
       material="shader: flat; color: yellow"
       geometry="primitive: cone; radiusBottom: 0; radiusTop: 0.5"
-      animation__start="property: position; to: 3.711 0.960 -4.480; dur: 1000"
-      animation__end="property: position; from: 3.711 0.960 -4.480; to: 3.711 1.038 -4.480; dur: 1000"
+      animation__start="property: position; to: 3.880 1.144 -4.498; dur: 1000"
+      animation__end="property: position; from: 3.880 1.144 -4.498; to: 3.880 1.295 -4.498; dur: 1000"
      >
     </a-entity>
 
@@ -321,9 +321,7 @@
       
 
 
-      <a-entity id="test-flower" 
-      networked="template:#flower-template;attachTemplateToLocal:true;networkId:remote;persistent:true;owner:scene"
-      ></a-entity>
+     
 
 
 
@@ -358,13 +356,13 @@
 
       <a-image id="wall-2"
       src="#wall_2"
-      position="3.997 1.916 -7.960"
+      position="3.481 1.916 -7.938"
       rotation="0 0 0">
       </a-image>
 
       <a-image id="movie-poster-1"
       src="#movie_poster_1"
-      position="1.876 1.764 -7.960"
+      position="2.093 1.764 -7.960"
       rotation="0 0 0" 
       scale="0.750 1 1">
 
@@ -372,9 +370,9 @@
 
       <a-image id="book-cover-1"
       src="#book_cover_1"
-      position="4.525 0.735 -2.380"
-      rotation="-90 -90 0" 
-      scale="0.45 0.5 1"
+      position="4.511 0.668 -2.311"
+      rotation="-90 -89.370 2.330" 
+      scale="0.340 0.480 1"
      
       >
 
@@ -399,5 +397,17 @@
   <script src="/static/assets/js/sync.system.js"></script>
 
   <script src="/static/assets/js/interactions.js"></script>
+
+  <audio src="/static/assets/audio/bg.mp3" id="bg-music" loop="loop"></audio>
+
+  <script>
+    window.onload=function(){
+        var bg = document.getElementById("bg-music")
+        bg.volume = 0.05
+      bg.play();
+    }
+  </script>
+
+
   </body>
 </html>
