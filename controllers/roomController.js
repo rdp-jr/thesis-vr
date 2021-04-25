@@ -198,7 +198,23 @@ const archive = (req, res) => {
 
  
 }
+
+const join_test = (req, res) => {
+  const room_code = 'test'
+  const wall_1 = get_asset_image_path(room_code, 'wall_1')
+      const wall_2 = get_asset_image_path(room_code, 'wall_2')
+      const movie_poster_1 = get_asset_image_path(room_code, 'movie_poster_1')
+      const book_cover_1 = get_asset_image_path(room_code, 'book_cover_1')
+      const scrapbook_1 = get_asset_image_path(room_code, 'scrapbook_1')
+      const scrapbook_2 = get_asset_image_path(room_code, 'scrapbook_2')
+      const scrapbook_3 = get_asset_image_path(room_code, 'scrapbook_3')
+      const scrapbook_4 = get_asset_image_path(room_code, 'scrapbook_4')
+      const video_1 = get_asset_video_or_audio_path(room_code, 'video_1', 'video')
+      const music_1 = get_asset_video_or_audio_path(room_code, 'music_1', 'audio')
+      const data = {room_code, video_1, music_1, wall_1, wall_2, movie_poster_1, book_cover_1, scrapbook_1, scrapbook_2, scrapbook_3, scrapbook_4}
+      res.render('room', data)
+}
   
 module.exports = {
-  edit, create, join, del, room_show_db, post_session, room_show_db_points, archive
+  edit, create, join, del, room_show_db, post_session, room_show_db_points, archive, join_test
 }

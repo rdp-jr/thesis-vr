@@ -120,58 +120,6 @@
         
 
         <!-- Templates -->
-        {{!-- <template id="flower-template">
-          <a-entity id="ent-flower"
-            gltf-model="#rose"
-            scale="0.1 0.1 0.1"
-            position="5.675 0.723 4.627"
-            onclick="clickFlower()"
-            >
-          </a-entity>
-        </template> --}}
-
-        {{!-- <template id="flower-template">
-          <a-entity id="ent-flower1"
-            gltf-model="#flower"
-            scale="0.1 0.1 0.1"
-            position="5.675 0.723 4.627"
-            onclick="clickFlower()"
-            >
-          </a-entity>
-        </template>
-
-        <template id="flower-template">
-          <a-entity id="ent-flower2"
-            gltf-model="#flower2"
-            scale="0.1 0.1 0.1"
-            position="5.675 0.723 4.627"
-            onclick="clickFlower()"
-            >
-          </a-entity>
-        </template>
-
-        <template id="flower-template">
-          <a-entity id="ent-flower3"
-            gltf-model="#flower3"
-            scale="0.1 0.1 0.1"
-            position="5.675 0.723 4.627"
-            onclick="clickFlower()"
-            >
-          </a-entity>
-        </template>
-
-        <template id="flower-template">
-          <a-entity id="ent-flower4"
-            gltf-model="#flower4"
-            scale="0.1 0.1 0.1"
-            position="5.675 0.723 4.627"
-            onclick="clickFlower()"
-            >
-          </a-entity>
-        </template> --}}
-
-
-
         <template id="box-template">
           <a-entity>
             <a-box class="blk"
@@ -213,34 +161,21 @@
 
           {{!-- LIVING ROOM --}}
 
-          {{!-- {{> couch }} --}}
-          {{> tv_set }}
-          {{!-- {{> tv_plants }} --}}
-          
+          {{> tv_set }}          
           {{> remote }}
           {{> radio }}
           {{> camera }}
 
 
-          {{!-- must be a gltf-model --}}
-          {{!-- {{> image_1 }} --}}
-
-
+      
           {{!-- GARDEN --}}
-          {{!-- {{> bush }} --}}
-          {{!-- {{> pots }} --}}
-          {{!-- {{> vase }} --}}
           {{> watercan }}
-          {{!-- {{> small_table }} --}}
-          {{!-- {{> large_table }} --}}
           {{> flower1 }}
           {{> flower2 }}
           {{> flower3 }}
           {{> flower4 }}
-          {{!-- {{> scrapbook }} --}}
+
           
-
-
           {{> exit }}
 
         </a-entity>
@@ -407,7 +342,7 @@
       has_scrapbook_4: has_scrapbook_4
       "></a-entity>
 
-     <a-entity light="type: ambient; color: #BBB; intensity: 0.2"></a-entity>
+     <a-entity light="type: ambient; color: #BBB; intensity: 0.8"></a-entity>
      <a-entity light="type: point; intensity: 0.75; distance: 50; decay: 2"
           position="2.735 2.901 -3.713"></a-entity>
 
