@@ -47,6 +47,39 @@ function get_asset_image_path(room_code, field_name) {
 
 }
 
+
+
+const secret = (req, res) => {
+  // if secret_key exists in db, get room_code, then proceed to get asset paths
+  const secret_key = req.body.secret_key
+
+  db.get(`SELECT * FROM rooms WHERE secret_key = "${req.body.secret_key}"`, (err, results) => {
+    if (results) {
+      
+      // console.log(results)
+      // const data = {...results, wall_1, wall_2}
+      var room_code = results['room_code']
+      const wall_1 = get_asset_image_path(room_code, 'wall_1')
+      const wall_2 = get_asset_image_path(room_code, 'wall_2')
+      const movie_poster_1 = get_asset_image_path(room_code, 'movie_poster_1')
+      const book_cover_1 = get_asset_image_path(room_code, 'book_cover_1')
+      const scrapbook_1 = get_asset_image_path(room_code, 'scrapbook_1')
+      const scrapbook_2 = get_asset_image_path(room_code, 'scrapbook_2')
+      const scrapbook_3 = get_asset_image_path(room_code, 'scrapbook_3')
+      const scrapbook_4 = get_asset_image_path(room_code, 'scrapbook_4')
+      const video_1 = get_asset_video_or_audio_path(room_code, 'video_1', 'video')
+      const music_1 = get_asset_video_or_audio_path(room_code, 'music_1', 'audio')
+      const data = {patient_name: results['patient_name'], patient_age: results['patient_age'], room_code, secret_key, video_1, music_1, wall_1, wall_2, movie_poster_1, book_cover_1, scrapbook_1, scrapbook_2, scrapbook_3, scrapbook_4}
+      console.log(data)
+      res.render('room-edit', data)
+    } else {
+      res.render('room-secret', {error: 'Secret key does not match'})
+    }
+  })
+
+
+}
+
 const edit = (req, res) => {
   console.log(req.body)
 
@@ -85,7 +118,7 @@ const edit = (req, res) => {
       // const data = {...results, wall_1, wall_2}
       var room_code = results['room_code']
       const data = {patient_name: name, patient_age: age, room_code, secret_key, video_1, music_1, wall_1, wall_2, movie_poster_1, book_cover_1, scrapbook_1, scrapbook_2, scrapbook_3, scrapbook_4}
-      // console.log(data)
+      console.log(data)
       res.render('room-edit', data)
     } else {
       res.render('room-secret', {error: 'Secret key does not match'})
@@ -178,10 +211,26 @@ const post_session = (req, res) => {
   //db save
   db.run(`INSERT INTO points (room_id, has_done_remote, has_done_radio, has_done_arrange, has_done_water, has_done_scrapbook, timestamp) VALUES ("${room_id}", "${has_done_remote}", "${has_done_radio}","${has_done_arrange}","${has_done_water}", "${has_done_scrapbook}", "${timestamp}")`)
 
-  const data = {room_id, has_done_remote, has_done_radio, has_done_arrange, has_done_water, has_done_scrapbook}
+
+  db.get(`SELECT * FROM rooms WHERE room_code = "${room_id}"`, (err, results) => {
+    if (results) {
+      
+     
+      var secret_key = results['secret_key']
+      const patient_name = results['patient_name']
+      const patient_age = results['patient_age']
+      const data = {secret_key, room_id, has_done_remote, has_done_radio, has_done_arrange, has_done_water, has_done_scrapbook, patient_name, patient_age}
+      res.render('post-session', {...data})
+    } else {
+      res.render('room-secret', {error: 'Secret key does not match'})
+    }
+  })
 
 
-  res.render('post-session', {...data})
+  // const data = {secret_key, room_id, has_done_remote, has_done_radio, has_done_arrange, has_done_water, has_done_scrapbook}
+
+
+  // res.render('post-session', {...data})
 }
 
 const archive = (req, res) => {
@@ -212,9 +261,27 @@ const join_test = (req, res) => {
       const video_1 = get_asset_video_or_audio_path(room_code, 'video_1', 'video')
       const music_1 = get_asset_video_or_audio_path(room_code, 'music_1', 'audio')
       const data = {room_code, video_1, music_1, wall_1, wall_2, movie_poster_1, book_cover_1, scrapbook_1, scrapbook_2, scrapbook_3, scrapbook_4}
-      res.render('room', data)
+      res.render('room-test', data)
 }
+
+const join_test2 = (req, res) => {
+  const room_code = 'test'
+  const wall_1 = get_asset_image_path(room_code, 'wall_1')
+      const wall_2 = get_asset_image_path(room_code, 'wall_2')
+      const movie_poster_1 = get_asset_image_path(room_code, 'movie_poster_1')
+      const book_cover_1 = get_asset_image_path(room_code, 'book_cover_1')
+      const scrapbook_1 = get_asset_image_path(room_code, 'scrapbook_1')
+      const scrapbook_2 = get_asset_image_path(room_code, 'scrapbook_2')
+      const scrapbook_3 = get_asset_image_path(room_code, 'scrapbook_3')
+      const scrapbook_4 = get_asset_image_path(room_code, 'scrapbook_4')
+      const video_1 = get_asset_video_or_audio_path(room_code, 'video_1', 'video')
+      const music_1 = get_asset_video_or_audio_path(room_code, 'music_1', 'audio')
+      const data = {room_code, video_1, music_1, wall_1, wall_2, movie_poster_1, book_cover_1, scrapbook_1, scrapbook_2, scrapbook_3, scrapbook_4}
+      res.render('room-test2', data)
+}
+
+
   
 module.exports = {
-  edit, create, join, del, room_show_db, post_session, room_show_db_points, archive, join_test
+  edit, create, join, del, room_show_db, post_session, room_show_db_points, archive, join_test, secret, join_test2
 }

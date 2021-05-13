@@ -137,13 +137,11 @@
       </a-assets>
 
         <a-entity id="player"
-          oculus-go-controls
           spawn-outside
           networked="template:#avatar-template;attachTemplateToLocal:false;"
           camera
           position="0 1.6 0"
           look-controls="pointerLockEnabled: true"
-          
           wasd-controls="acceleration:10"
           super-hands="colliderEvent: raycaster-intersection;
             colliderEventProperty: els;
@@ -152,6 +150,7 @@
             >
           <a-sphere class="head" visible="false"></a-sphere>
           <a-cursor></a-cursor>
+          <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
         </a-entity>
 
 

@@ -62,5 +62,14 @@
     
   </tbody>
 </table>
-<a class="btn btn-lg mt-5 btn-custom w-25 mt-5 mx-auto" href="/">Continue</a>
+
+
+
+<form method="POST" action="/room/edit">
+<input type="hidden" name="room_code" value="{{ room_id }}">
+  <input type="hidden" name="secret_key" value="{{ secret_key }}">
+  <input type="hidden" name="patient_name" value="{{ patient_name }}">
+  <input type="hidden" name="patient_age" value="{{ patient_age }}">
+  <input type="submit" class="btn btn-lg mt-5 btn-custom w-25 mt-5 mx-auto" value="Continue">
+</form>
 </div>

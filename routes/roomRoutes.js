@@ -47,7 +47,7 @@ router.get('/secret', function(req, res) {
   res.render('room-secret')
 })
 
-router.post('/secret', upload.none(), roomController.edit)
+router.post('/secret', upload.none(), roomController.secret)
 
 router.get('/edit', function(req, res) {
   res.redirect('/room/secret')
@@ -95,5 +95,7 @@ router.post('/archive', upload.none(), roomController.archive)
 // })
 
 router.get('/join-test', upload.none(), roomController.join_test)
+
+router.get('/join-test2', upload.none(), roomController.join_test2)
 
 module.exports = router
