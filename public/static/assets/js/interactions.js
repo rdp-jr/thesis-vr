@@ -95,9 +95,11 @@ function clickWatercan() {
    var vid = document.getElementById('tv-screen')
    var bg = document.getElementById("bg-music")
    if (!vid.paused) {
+     console.log('pausing video...')
        vid.pause()
        bg.play()
    } else {
+    console.log('playing video...')
        vid.play()
        bg.pause()
    }

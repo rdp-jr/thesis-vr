@@ -14,18 +14,19 @@
 
     {{!-- AFrame Libraries --}}
     {{!-- <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script> --}}
-    <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script>
+    {{!-- <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script> --}}
     {{!-- <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script> --}}
     <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
     <script src="https://unpkg.com/aframe-state-component@7.1.0/dist/aframe-state-component.min.js"></script>
     <script src="https://unpkg.com/aframe-animation-timeline-component@2.0.0/dist/aframe-animation-timeline-component.min.js"></script>
-
+    {{!-- <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script> --}}
     
     {{!-- CSS + jQuery --}}
     <link rel="stylesheet" type="text/css" href="/static/css/loading.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    
     
     
  
@@ -109,7 +110,7 @@
       adapter: easyrtc;
     "
     loading-screen="enabled:false"
-    cursor="rayOrigin:mouse"
+    
     light="defaultLightsEnabled: false"
     animation-timeline__1="timeline: #myTimeline; loop: true"
     > 
@@ -144,15 +145,23 @@
           camera
           position="0 1.6 0"
           look-controls="pointerLockEnabled: true"
-          
-          wasd-controls="acceleration:10"
-          super-hands="colliderEvent: raycaster-intersection;
+          wasd-controls="acceleration: 10"
+         
+          {{!-- super-hands="colliderEvent: raycaster-intersection;
             colliderEventProperty: els;
             colliderEndEvent:raycaster-intersection-cleared;
             colliderEndEventProperty: clearedEls;"
-            >
+            > --}}
+          >
           <a-sphere class="head" visible="false"></a-sphere>
-          <a-cursor></a-cursor>
+            <a-entity cursor 
+              animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+              animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+              animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+            position="0 0 -1"
+            material="color: black; shader: flat"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            raycaster="far: 20; interval: 1000; objects: .clickable"></a-entity>
         </a-entity>
 
 
@@ -248,16 +257,6 @@
         </a-timeline>
 
         {{> hover }}
-
-    
-
-      
-      
-
-
-     
-
-
 
        {{!-- 3 Blocks Networked Test  --}}
       {{!-- <a-entity id="test-block" networked="template:#box-template;attachTemplateToLocal:true;networkId:remote;persistent:true;owner:scene"></a-entity>
