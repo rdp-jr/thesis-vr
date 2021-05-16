@@ -100,6 +100,7 @@
     
 
     <a-scene 
+    stats
       id="scene"
     networked-scene="
       room: {{room_code}};
@@ -159,17 +160,34 @@
 
           {{> house }}
 
+          
+          
+
 
           {{!-- LIVING ROOM --}}
 
-          {{> tv_set }}          
+          {{!-- {{> tv_set }}           --}}
           {{> remote }}
           {{> radio }}
           {{> camera }}
 
-
-      
+          
+          {{> sofa }}
+          {{> scrapbook }}
+          {{!-- {{> bookshelf }} --}}
+          
           {{!-- GARDEN --}}
+          
+          {{> bench }}
+          {{> gardentable }} 
+          {{> vasestand }}
+          {{> pot_1 }}
+          {{> pot_2 }}
+          {{> pot_3 }}
+          {{> pot_4 }}
+
+
+          
           {{> watercan }}
           {{> vase }}
           {{> flower1 }}
@@ -177,10 +195,19 @@
           {{> flower3 }}
           {{> flower4 }}
 
+
+         
+
           
           {{> exit }}
 
         </a-entity>
+
+
+        {{!-- delayed assets --}}
+        {{> tv_set }}   
+        
+        {{> bookshelf }}
 
         {{> scrapbook_1 }}
         {{> scrapbook_2 }}
@@ -188,7 +215,7 @@
         {{> scrapbook_4 }}
 
         <a-sky src="#sky"></a-sky>
-        <a-plane material="src:#ground; repeat: 20 20; shader: flat" height="100" width="100" rotation="-90 0 0"></a-plane>
+        <a-plane material="src:#ground; repeat: 20 20; shader: flat" height="100" width="100" rotation="-90 0 0" scale="0.5 0.5 1"></a-plane>
 
         {{!-- </a-entity> --}}
 
