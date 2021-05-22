@@ -18,7 +18,9 @@
     <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
     <script src="https://unpkg.com/aframe-state-component@7.1.0/dist/aframe-state-component.min.js"></script>
     <script src="https://unpkg.com/aframe-animation-timeline-component@2.0.0/dist/aframe-animation-timeline-component.min.js"></script>
-    <script src="https://rocketvirtual.com/aframePACKAGE/aframe-extras-master/dist/aframe-extras.min.js"></script>
+    {{!-- <script src="https://rocketvirtual.com/aframePACKAGE/aframe-extras-master/dist/aframe-extras.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.controls.min.js"></script>
+
     
     {{!-- CSS + jQuery --}}
     <link rel="stylesheet" type="text/css" href="/static/css/loading.css">
@@ -167,15 +169,19 @@
             colliderEndEventProperty: clearedEls;"
             > --}}
           >
-           <a-entity camera position="0 0 0" look-controls="pointerLockEnabled: true">
-        <a-entity cursor 
-              animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-              animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-              animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-            position="0 0 -1"
-            material="color: black; shader: flat"
-            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-            raycaster="far: 20; interval: 1000; objects: .clickable"></a-entity>
+           {{!-- <a-entity camera position="0 0 0" look-controls="pointerLockEnabled: true"> --}}
+        <a-entity class="cam" camera="active: true"
+                  position="0 0 0" look-controls>
+
+
+          <a-entity cursor 
+                animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+              position="0 0 -1"
+              material="color: black; shader: flat"
+              geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+              raycaster="far: 20; interval: 1000; objects: .clickable"></a-entity>
 
 
            </a-entity>
