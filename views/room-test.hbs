@@ -110,6 +110,7 @@
       adapter: easyrtc;
     "
     loading-screen="enabled:false"
+   
     
     light="defaultLightsEnabled: false"
     animation-timeline__1="timeline: #myTimeline; loop: true"
@@ -153,7 +154,7 @@
 
 
         <a-entity id="player"
-          movement-controls="constrainToNavMesh: false;speed: 0.15;"
+          movement-controls="speed: 0.15;controls: trackpad;"
           spawn-outside
           networked="template:#avatar-template;attachTemplateToLocal:false;"
           
