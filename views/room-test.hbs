@@ -154,7 +154,7 @@
 
 
         <a-entity id="player"
-          movement-controls="speed: 0.15;controls: trackpad;"
+          {{!-- movement-controls="speed: 0.15;" --}}
           spawn-outside
           networked="template:#avatar-template;attachTemplateToLocal:false;"
           
@@ -171,20 +171,22 @@
             > --}}
           >
            {{!-- <a-entity camera position="0 0 0" look-controls="pointerLockEnabled: true"> --}}
-        <a-entity class="cam" camera="active: true"
-                  position="0 0 0" look-controls>
 
+             <a-entity movement-controls="speed: 0.15;">
+              <a-entity class="cam" camera="active: true"
+                        position="0 0 0" look-controls>
 
-          <a-entity cursor 
-                animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-              position="0 0 -1"
-              material="color: black; shader: flat"
-              geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-              raycaster="far: 20; interval: 1000; objects: .clickable"></a-entity>
+                <a-entity cursor 
+                      animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                      animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                      animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+                    position="0 0 -1"
+                    material="color: black; shader: flat"
+                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                    raycaster="far: 20; interval: 1000; objects: .clickable">
+                </a-entity>
 
-
+              </a-entity>
            </a-entity>
            {{!-- <a-entity class="cam" networked="template:#head-template;attachTemplateToLocal:false;" camera="active: true"
           position="0 1.6 0" look-controls> --}}
