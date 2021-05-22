@@ -5,22 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>  
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    {{!-- <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script> --}}
 </head>
 <body>
     <a-scene>
-        <a-entity movement-controls position="0 0 6">
+
+        <a-assets>
+            <img id="footsteps" src="/static/assets/img/footstep.png">
+        </a-assets>
+
+        <a-entity movement-controls="controls: checkpoint"
+            checkpoint-controls="mode: animate"
+         position="0 0 0">
             <a-entity camera 
             look-controls="pointerLockEnabled: true"
             position="0 1.6 0">
-                <a-cursor></a-cursor>
+                <a-entity cursor 
+                      animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                      animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                      animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+                    position="0 0 -1"
+                    material="color: black; shader: flat"
+                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                    raycaster="far: 20; interval: 1000; objects: .clickable">
+                </a-entity>
+                {{!-- <a-cursor></a-cursor> --}}
             </a-entity>
         </a-entity>
 
-        <a-plane color="#DDDDDD" shader="flat" rotation="-90 0 0" scale="8 4 1"></a-plane>
+        <a-plane color="#DDDDDD" shader="flat" rotation="-90 0 0" scale="10 40 1"></a-plane>
 
-        <a-box color="#00AA00" width="0.5" depth="3" position="-1.5 0.5 0"></a-box>
+        <a-box color="#00AAFF" position="-3 0.5 -16" checkpoint></a-box>
+
+        <a-image class="clickable" src="#footsteps" position="-3 2.5 -16" checkpoint="offset: 1 -2.5 0"></a-image>
     </a-scene>
 </body>
 </html>
