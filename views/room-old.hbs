@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>  
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-entity movement-controls position="0 0 6">
+            <a-entity camera 
+            look-controls="pointerLockEnabled: true"
+            position="0 1.6 0">
+                <a-cursor></a-cursor>
+            </a-entity>
+        </a-entity>
+
+        <a-plane color="#DDDDDD" shader="flat" rotation="-90 0 0" scale="8 4 1"></a-plane>
+
+        <a-box color="#00AA00" width="0.5" depth="3" position="-1.5 0.5 0"></a-box>
+    </a-scene>
+</body>
+</html>

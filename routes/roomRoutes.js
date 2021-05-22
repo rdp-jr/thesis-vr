@@ -92,4 +92,9 @@ router.post('/archive', upload.none(), roomController.archive)
 
 router.get('/join-test', upload.none(), roomController.join_test)
 
+
+router.get('/join-old', upload.none(), function(req, res) {
+  res.render('room-old')
+})
+
 module.exports = router
