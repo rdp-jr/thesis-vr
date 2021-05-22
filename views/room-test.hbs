@@ -13,14 +13,11 @@
     <script src="https://unpkg.com/networked-aframe@0.8.0/dist/networked-aframe.min.js"></script>
 
     {{!-- AFrame Libraries --}}
-    {{!-- <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script> --}}
-    {{!-- <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script> --}}
     <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
     <script src="https://unpkg.com/aframe-state-component@7.1.0/dist/aframe-state-component.min.js"></script>
     <script src="https://unpkg.com/aframe-animation-timeline-component@2.0.0/dist/aframe-animation-timeline-component.min.js"></script>
-    {{!-- <script src="https://rocketvirtual.com/aframePACKAGE/aframe-extras-master/dist/aframe-extras.min.js"></script> --}}
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.controls.min.js"></script>
-
+    {{!-- <script src="https://raw.githack.com/thedart76/aframe-blink-teleportation/master/js/aframe-blink-teleportation-min.js"></script> --}}
+    
     
     {{!-- CSS + jQuery --}}
     <link rel="stylesheet" type="text/css" href="/static/css/loading.css">
@@ -43,10 +40,8 @@
     {{!-- Custom Components --}}
     <script src="/static/assets/js/load-assets.component.js"></script>
     <script src="/static/assets/js/spawn-outside.component.js"></script>
-    {{!-- <script src="/static/assets/js/capture-mouse.component.js"></script>
-    <script src="/static/assets/js/flower-grow.component.js"></script>
-    <script src="/static/assets/js/flower-drop.component.js"></script>
-    <script src="/static/assets/js/block.component.js"></script> --}}
+    <script src="/static/assets/js/aframe-blink-teleportation.js"></script>
+    
 
     <script>
 
@@ -139,96 +134,25 @@
 
       </a-assets>
 
-         {{!-- <a-entity id="avatar" networked="template:#avatar-template;attachTemplateToLocal:false;"
-        movement-controls="constrainToNavMesh: true;" spawn-in-circle="radius:3">
-        <a-entity class="cam" networked="template:#head-template;attachTemplateToLocal:false;" camera="active: true"
-          position="0 1.6 0" look-controls></a-entity>
-        <a-entity class="leftController" networked="template:#hand-left;attachTemplateToLocal:false;"
-          hand-controls="hand: left; handModelStyle: lowPoly; color: #15ACCF" teleport-controls="cameraRig: #avatar; button: trigger; curveShootingSpeed: 11; collisionEntities: #navmesh-walls;" visible="true" ></a-entity>
-        <a-entity class="rightController" networked="template:#hand-right;attachTemplateToLocal:false;"
-          hand-controls="hand: right; handModelStyle: lowPoly; color: #15ACCF" laser-controls raycaster="showLine: true; far: 10; interval: 0; objects: .clickable, a-link;" line="color: #7cfc00; opacity: 0.5" visible="true"></a-entity>
-      </a-entity> --}}
-
-
         
 
 
-        <a-entity id="player"
-          {{!-- movement-controls="speed: 0.15;" --}}
-          spawn-outside
-          networked="template:#avatar-template;attachTemplateToLocal:false;"
-          
-          {{!-- position="0 0 0" --}}
-          {{!-- look-controls="pointerLockEnabled: true" --}}
-          {{!-- look-controls --}}
-          {{!-- wasd-controls="acceleration: 10" --}}
         
-         
-          {{!-- super-hands="colliderEvent: raycaster-intersection;
-            colliderEventProperty: els;
-            colliderEndEvent:raycaster-intersection-cleared;
-            colliderEndEventProperty: clearedEls;"
-            > --}}
-          >
-          
-
-             <a-entity movement-controls="speed: 0.15;" position="0 0 0">
-              {{!-- <a-entity class="cam" camera="active: true"
-                        position="0 0 0" look-controls> --}}
-                 <a-entity camera 
-                  look-controls="pointerLockEnabled: true"
-                  position="0 1.6 0">
-
-                <a-entity cursor 
-                      animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-                      animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-                      animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-                    position="0 0 -1"
-                    material="color: black; shader: flat"
-                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                    raycaster="far: 20; interval: 1000; objects: .clickable">
-                </a-entity>
-
-              </a-entity>
-           </a-entity>
-           {{!-- <a-entity class="cam" networked="template:#head-template;attachTemplateToLocal:false;" camera="active: true"
-          position="0 1.6 0" look-controls> --}}
-          {{!-- </a-entity> --}}
-          
-          <a-sphere class="head" visible="false"></a-sphere>
-            {{!-- <a-entity cursor 
-              animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-              animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-              animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-            position="0 0 -1"
-            material="color: black; shader: flat"
-            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-            raycaster="far: 20; interval: 1000; objects: .clickable"></a-entity> --}}
-        </a-entity>
 
 
         <a-entity model-manager>
 
           {{> house }}
 
-          
-          
-
-
           {{!-- LIVING ROOM --}}
-
-          {{!-- {{> tv_set }}           --}}
           {{> remote }}
           {{> radio }}
           {{> camera }}
-
-          
           {{> sofa }}
           {{> scrapbook }}
-          {{!-- {{> bookshelf }} --}}
+          
           
           {{!-- GARDEN --}}
-          
           {{> bench }}
           {{> gardentable }} 
           {{> vasestand }}
@@ -300,10 +224,7 @@
 
         {{> hover }}
 
-       {{!-- 3 Blocks Networked Test  --}}
-      {{!-- <a-entity id="test-block" networked="template:#box-template;attachTemplateToLocal:true;networkId:remote;persistent:true;owner:scene"></a-entity>
-      <a-box id="addBlock" position="0.8 1 -2.650" scale="0.5 0.5 0.5" material="color: green"></a-box>
-      <a-box id="minusBlock" position="-1 1 -2.650" scale="0.5 0.5 0.5" material="color: red"></a-box> --}}
+      
 
       <a-entity id="state" bind__gameState=
       "has_done_remote: has_done_remote; 
@@ -355,9 +276,46 @@
 
 
 
+      <a-image src="#footsteps" 
+        position="0.416 1.876 2.157" 
+        class="clickable" 
+        blink-teleportation="pos: 2.499 1.6 -5.473">
+      </a-image>
 
-      <a-image ></a-image>
-      {{!-- living room position 0.093 1.6 6.270--}}
+
+      <a-entity id="player"
+        spawn-outside
+        networked="template:#avatar-template;attachTemplateToLocal:false;"
+        look-controls="pointerLockEnabled: true"
+        
+        
+        >
+
+        <a-entity id="camRig" position="0 0 0">
+        <!-- CAMERA -->
+        <a-camera id="cam" wasd-controls-enabled="true" position="0 0 0"
+        
+        ></a-camera>
+        
+      </a-entity>
+          
+
+
+        
+          {{!-- <a-entity cursor 
+            animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+            animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+            animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+            position="0 0 -1"
+            material="color: black; shader: flat"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            raycaster="far: 20; interval: 1000; objects: .clickable">
+          </a-entity> --}}
+      </a-entity>
+
+      
+
+
 
     </a-scene>
 
