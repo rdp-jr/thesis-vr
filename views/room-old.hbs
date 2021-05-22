@@ -8,7 +8,8 @@
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>  
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     {{!-- <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script> --}}
-    <script src="https://raw.githack.com/thedart76/aframe-blink-teleportation/master/js/aframe-blink-teleportation-min.js"></script>
+    {{!-- <script src="https://raw.githack.com/thedart76/aframe-blink-teleportation/master/js/aframe-blink-teleportation-min.js"></script> --}}
+    <script src="/static/assets/js/aframe-blink-teleportation.js"></script>
 </head>
 <body>
     <a-scene>
@@ -36,17 +37,21 @@
             </a-entity>
         </a-entity> --}}
 
-        <a-plane color="#DDDDDD" shader="flat" rotation="-90 0 0" scale="10 40 1"></a-plane>
+        <a-plane color="#FF0000" shader="flat" rotation="-90 0 0" scale="10 40 1"></a-plane>
 
         <a-box color="#00AAFF" position="-3 0.5 -16" class="clickable"></a-box>
 
-        <a-image src="#footsteps" position="-3 2.5 -16"  blink-teleportation class="clickable"></a-image>
+        <a-image src="#footsteps" position="-3 2.5 -16"  blink-teleportation="pos: -3 0.5 -16" class="clickable"></a-image>
 
-        <a-entity id="camRig" position="0 0 12">
-			<!-- CAMERA -->
-			<a-camera id="cam" wasd-controls-enabled="false">
-			</a-camera>
-		</a-entity>
+        <a-sky color="#6EBAA7"></a-sky>
+
+        <a-entity id="player"
+        look-controls="pointerLockEnabled: true" position="0 1.6 0"> 
+            <a-entity id="camRig" position="0 0 0">
+                <!-- CAMERA -->
+                <a-camera id="cam" wasd-controls-enabled="true" position="0 0 0"></a-camera>
+            </a-entity>
+        </a-entity>
     </a-scene>
 </body>
 </html>
