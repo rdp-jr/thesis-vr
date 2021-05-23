@@ -335,23 +335,19 @@
         blink-teleportation="pos: 0.093 1.6 6.270; hide: false">
       </a-image>
 
+      <a-entity id="camRig" spawn-outside networked="template:#avatar-template;attachTemplateToLocal:false;" 
+      look-controls="pointerLockEnabled: true">
+        
 
-      <a-entity id="player" class="camRig"
-        spawn-outside
-        networked="template:#avatar-template;attachTemplateToLocal:false;"
-        look-controls="pointerLockEnabled: true"
         
+          <!-- CAMERA -->
+          <a-camera id="cam" wasd-controls-enabled="false" position="0 0 0"
         
-        >
-
-       
-        <!-- CAMERA -->
-        <a-camera id="cam" wasd-controls-enabled="true" position="0 0 0"
-       
-        ></a-camera>
-        
-      
+          ></a-camera>
           
+        
+            
+       
       </a-entity>
 
       
