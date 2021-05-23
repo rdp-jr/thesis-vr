@@ -336,7 +336,7 @@
       </a-image>
 
 
-      <a-entity id="player"
+      <a-entity id="player" class="camRig"
         spawn-outside
         networked="template:#avatar-template;attachTemplateToLocal:false;"
         look-controls="pointerLockEnabled: true"
@@ -344,35 +344,14 @@
         
         >
 
-        <a-entity id="camRig" position="0 0 0">
-        <!-- CAMERA -->
-        <a-camera id="cam" wasd-controls-enabled="false" position="0 0 0"
        
-          {{!-- <a-entity cursor 
-              animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-              animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-              animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-              position="0 0 -1"
-              material="color: black; shader: flat"
-              geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-              raycaster="far: 20; interval: 1000; objects: .clickable">
-            </a-entity> --}}
+        <!-- CAMERA -->
+        <a-camera id="cam" wasd-controls-enabled="true" position="0 0 0"
+       
         ></a-camera>
         
-      </a-entity>
+      
           
-
-
-        
-          {{!-- <a-entity cursor 
-            animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-            animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-            animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-            position="0 0 -1"
-            material="color: black; shader: flat"
-            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-            raycaster="far: 20; interval: 1000; objects: .clickable">
-          </a-entity> --}}
       </a-entity>
 
       
