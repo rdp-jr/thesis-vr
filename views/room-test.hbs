@@ -41,6 +41,7 @@
     <script src="/static/assets/js/load-assets.component.js"></script>
     <script src="/static/assets/js/spawn-outside.component.js"></script>
     <script src="/static/assets/js/aframe-blink-teleportation.js"></script>
+    <script src="/static/assets/js/rotation-reader.component.js"></script>
     
 
     <script>
@@ -335,20 +336,22 @@
         blink-teleportation="pos: 0.093 1.6 6.270; hide: false">
       </a-image>
 
-      <a-entity id="camRig" position="0 0 0"  
+      <a-entity id="camRig" spawn-outside class="camrigito"
       >
         
 
         
           <!-- CAMERA -->
-          <a-camera id="cam" wasd-controls-enabled="false" spawn-outside
-        look-controls="pointerLockEnabled: true" networked="template:#avatar-template;attachTemplateToLocal:false;"
-          ></a-camera>
+          
           
         
             
        
       </a-entity>
+
+      <a-camera id="cam" wasd-controls-enabled="false" 
+        look-controls="pointerLockEnabled: true" networked="template:#avatar-template;attachTemplateToLocal:false;"
+          ></a-camera>
 
       
 
@@ -382,6 +385,10 @@
         bg.volume = 0.05
       bg.play();
     }
+
+
+
+    // var el = document.querySelector('.head');
   </script>
 
 

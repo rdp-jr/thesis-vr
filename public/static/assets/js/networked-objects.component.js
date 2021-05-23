@@ -20,6 +20,16 @@ NAF.schemas.add({
 //   ]
 // })
 
+
+NAF.schemas.add({
+  template: '#avatar-template',
+  components: [
+    'position',
+    'rotation',
+    
+  ]
+});
+
 // last person to go in the room gets ownership
 NAF.connection.onConnect(() => {
   // const entBlock = document.getElementById('test-block')

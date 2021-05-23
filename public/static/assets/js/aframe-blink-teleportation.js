@@ -32,6 +32,7 @@ AFRAME.registerComponent('blink-teleportation', {
                 var controller_1 = document.createElement('a-entity');
                 controller_1.setAttribute('laser-controls', 'hand', data.hand);
                 controller_1.setAttribute('raycaster', 'objects', data.raycasterObjects);
+                
                 data.cameraRig.appendChild(controller_1);
             } else if (data.dof === 6) {
                 // Oculus Quest || Rift S, Rift, and (not tested but it should work) HTC Vive
@@ -71,9 +72,14 @@ AFRAME.registerComponent('blink-teleportation', {
 
                 // WHEN FADE-IN ANIMATION COMPLETES, MOVE THE CAMERA RIG TO DESTINATION
                 setTimeout(function () {
-                    // data.cameraRig.setAttribute('position', data.pos);
-                    data.cameraRig.setAttribute('position', {x: 0, y: 0, z: 0});
+                    data.cameraRig.setAttribute('position', data.pos);
+                    
+                    // moved in the wrong direction
+                    // data.cameraRig.setAttribute('position', {x: 0, y: 0, z: 0});
                     data.camera.setAttribute('position', data.pos)
+
+
+
                     // console.log(data.pos)
                     // new
                     // document.getElementById('player').setAttribute('position', data.pos);
