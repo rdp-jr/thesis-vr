@@ -71,8 +71,9 @@ AFRAME.registerComponent('blink-teleportation', {
 
                 // WHEN FADE-IN ANIMATION COMPLETES, MOVE THE CAMERA RIG TO DESTINATION
                 setTimeout(function () {
-                    data.cameraRig.setAttribute('position', data.pos);
-                    console.log(data.pos)
+                    // data.cameraRig.setAttribute('position', data.pos);
+                    data.camera.setAttribute('position', data.pos)
+                    // console.log(data.pos)
                     // new
                     // document.getElementById('player').setAttribute('position', data.pos);
                     // data.player.setAttribute('position', data.pos);
