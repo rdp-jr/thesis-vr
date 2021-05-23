@@ -16,7 +16,7 @@
     <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
     <script src="https://unpkg.com/aframe-state-component@7.1.0/dist/aframe-state-component.min.js"></script>
     <script src="https://unpkg.com/aframe-animation-timeline-component@2.0.0/dist/aframe-animation-timeline-component.min.js"></script>
-    {{!-- <script src="https://raw.githack.com/thedart76/aframe-blink-teleportation/master/js/aframe-blink-teleportation-min.js"></script> --}}
+    <script src="https://raw.githack.com/thedart76/aframe-blink-teleportation/master/js/aframe-blink-teleportation-min.js"></script>
     
     
     {{!-- CSS + jQuery --}}
@@ -40,7 +40,7 @@
     {{!-- Custom Components --}}
     <script src="/static/assets/js/load-assets.component.js"></script>
     <script src="/static/assets/js/spawn-outside.component.js"></script>
-    <script src="/static/assets/js/aframe-blink-teleportation.js"></script>
+    {{!-- <script src="/static/assets/js/aframe-blink-teleportation.js"></script> --}}
     <script src="/static/assets/js/rotation-reader.component.js"></script>
     
 
@@ -281,7 +281,7 @@
         position="0.547 0.3 -1.968" 
         rotation="90 0 180"
         class="clickable" 
-        blink-teleportation="pos: 0.547 1.6 -1.968; hide: false">
+        blink-teleportation="pos: 0.547 0.0 -1.968; hide: false">
       </a-image>
 
 
@@ -289,7 +289,7 @@
         position="3.236 0.3 -5.498" 
         rotation="90 0 180"
         class="clickable" 
-        blink-teleportation="pos: 3.236 1.6 -5.498; hide: false">
+        blink-teleportation="pos: 3.236 0.0 -5.498; hide: false">
       </a-image>
 
 
@@ -297,7 +297,7 @@
         position="3.456 0.3 -3.453" 
         rotation="90 0 180"
         class="clickable" 
-        blink-teleportation="pos: 3.456 1.6 -3.453; hide: false">
+        blink-teleportation="pos: 3.456 0.0 -3.453; hide: false">
       </a-image>
 
 
@@ -310,14 +310,14 @@
         position="3.350 0.3 0.114" 
         rotation="90 0 180"
         class="clickable" 
-        blink-teleportation="pos: 3.350 1.6 0.114; hide: false">
+        blink-teleportation="pos: 3.350 0.0 0.114; hide: false">
       </a-image>
 
       <a-image src="#footsteps" 
         position="6.341 0.3 0.809" 
         rotation="90 0 180"
         class="clickable" 
-        blink-teleportation="pos: 6.341 1.6 0.809; hide: false">
+        blink-teleportation="pos: 6.341 0.0 0.809; hide: false">
       </a-image>
 
       {{!-- Exit Room Teleport Point --}}
@@ -325,7 +325,7 @@
         position="-8.826 0.2 4.357" 
         rotation="90 0 180"
         class="clickable" 
-        blink-teleportation="pos: -8.826 1.6 4.357; hide: false">
+        blink-teleportation="pos: -8.826 0.0 4.357; hide: false">
       </a-image>
 
       {{!-- Starting Point --}}
@@ -333,15 +333,18 @@
         position="0.093 0.2 6.270" 
         rotation="90 0 180"
         class="clickable" 
-        blink-teleportation="pos: 0.093 1.6 6.270; hide: false">
+        blink-teleportation="pos: 0.093 0.0 6.270; hide: false">
       </a-image>
 
-      <a-entity id="camRig" spawn-outside class="camrigito"
+      <a-entity id="camRig" spawn-outside networked="template:#avatar-template;attachTemplateToLocal:false;"
       >
         
 
         
           <!-- CAMERA -->
+          <a-camera id="cam" wasd-controls-enabled="false" 
+        look-controls="pointerLockEnabled: true" networked="template:#avatar-template;attachTemplateToLocal:false;" 
+          ></a-camera>
           
           
         
@@ -349,9 +352,7 @@
        
       </a-entity>
 
-      <a-camera id="cam" wasd-controls-enabled="false" 
-        look-controls="pointerLockEnabled: true" networked="template:#avatar-template;attachTemplateToLocal:false;"
-          ></a-camera>
+      
 
       
 
@@ -384,11 +385,35 @@
         var bg = document.getElementById("bg-music")
         bg.volume = 0.05
       bg.play();
+
+
+     
     }
 
 
+    function removeHeadFace() {
+     var headExists = document.getElementsByClassName('head')
+     
+     if(headExists.length > 0) {
+         var head = document.querySelector('.head')
+        var face = document.querySelector('.face')
+        head.setAttribute('visible', false)
+        face.setAttribute('visible', false)
+        clearInterval(check)
 
-    // var el = document.querySelector('.head');
+
+
+
+     }
+      
+    }
+
+    var check = setInterval(removeHeadFace, 500)
+    
+
+
+
+ 
   </script>
 
 

@@ -21,17 +21,25 @@ NAF.schemas.add({
 // })
 
 
-NAF.schemas.add({
-  template: '#avatar-template',
-  components: [
-    'position',
-    'rotation',
+// NAF.schemas.add({
+//   template: '#avatar-template',
+//   components: [
     
-  ]
-});
+//     'rotation',
+//     {
+//       selector: '#camRig',
+//       component: 'position'
+//     }
+//   ]
+// });
 
 // last person to go in the room gets ownership
 NAF.connection.onConnect(() => {
   // const entBlock = document.getElementById('test-block')
   // NAF.utils.takeOwnership(entBlock)
+
+  // document.querySelector('.head').setAttribute('visible', false)
+  // document.querySelector('.face').setAttribute('visible', false)
+
+
 })

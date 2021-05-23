@@ -8,8 +8,8 @@
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>  
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     {{!-- <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script> --}}
-    {{!-- <script src="https://raw.githack.com/thedart76/aframe-blink-teleportation/master/js/aframe-blink-teleportation-min.js"></script> --}}
-    <script src="/static/assets/js/aframe-blink-teleportation.js"></script>
+    <script src="https://raw.githack.com/thedart76/aframe-blink-teleportation/master/js/aframe-blink-teleportation-min.js"></script>
+    {{!-- <script src="/static/assets/js/aframe-blink-teleportation.js"></script> --}}
 </head>
 <body>
     <a-scene>
@@ -46,13 +46,13 @@
 
         <a-entity id="camRig" position="0 1.6 0">
             
-           
+            <a-camera id="cam" wasd-controls-enabled="false" look-controls="pointerLockEnabled: true"></a-camera>
             
         </a-entity>
 
 
          <!-- CAMERA -->
-            <a-camera id="cam" wasd-controls-enabled="false" look-controls="pointerLockEnabled: true"></a-camera>
+            
 
 
 
