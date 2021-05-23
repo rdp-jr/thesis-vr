@@ -16,7 +16,7 @@
     <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
     <script src="https://unpkg.com/aframe-state-component@7.1.0/dist/aframe-state-component.min.js"></script>
     <script src="https://unpkg.com/aframe-animation-timeline-component@2.0.0/dist/aframe-animation-timeline-component.min.js"></script>
-    {{!-- <script src="https://raw.githack.com/thedart76/aframe-blink-teleportation/master/js/aframe-blink-teleportation-min.js"></script> --}}
+    <script src="https://raw.githack.com/thedart76/aframe-blink-teleportation/master/js/aframe-blink-teleportation-min.js"></script>
     
     
     {{!-- CSS + jQuery --}}
@@ -40,7 +40,7 @@
     {{!-- Custom Components --}}
     <script src="/static/assets/js/load-assets.component.js"></script>
     <script src="/static/assets/js/spawn-outside.component.js"></script>
-    <script src="/static/assets/js/aframe-blink-teleportation.js"></script>
+    {{!-- <script src="/static/assets/js/aframe-blink-teleportation.js"></script> --}}
     
 
     <script>
@@ -335,14 +335,14 @@
         blink-teleportation="pos: 0.093 1.6 6.270; hide: false">
       </a-image>
 
-      <a-entity id="camRig" spawn-outside networked="template:#avatar-template;attachTemplateToLocal:false;" 
-      look-controls="pointerLockEnabled: true">
+      <a-entity id="camRig" spawn-outside  
+      >
         
 
         
           <!-- CAMERA -->
-          <a-camera id="cam" wasd-controls-enabled="false" position="0 0 0"
-        
+          <a-camera id="cam" wasd-controls-enabled="false" 
+        look-controls="pointerLockEnabled: true" networked="template:#avatar-template;attachTemplateToLocal:false;"
           ></a-camera>
           
         
