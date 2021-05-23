@@ -2,6 +2,7 @@ AFRAME.registerComponent('blink-teleportation', {
 	schema: {
         camera: {type: 'selector', default: '#cam'},
         cameraRig: {type: 'selector', default: '#camRig'},
+        player: {type: 'selector', default: '#player'},
         deviceButtons: {default: ['click', 'mousedown', 'triggerdown']},
         cursor: {type: 'string', default: '#my-cursor'},
         raycasterObjects: {type: 'string', default: '.clickable'},
@@ -73,9 +74,8 @@ AFRAME.registerComponent('blink-teleportation', {
                 setTimeout(function () {
                     // data.cameraRig.setAttribute('position', data.pos);
                     // new
-                    document.getElementById('player').setAttribute('position', data.pos);
-                    // console.log('heres my parent')
-                    // console.log(el.parentEl)
+                    // document.getElementById('player').setAttribute('position', data.pos);
+                    data.player.setAttribute('position', data.pos);
 
                     // CLASS AND VISIBLE ATTRIBUTES
                     for (var i = 0; i < blinkTeleportationEls.length; i++) {
