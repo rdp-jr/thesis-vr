@@ -5,7 +5,7 @@
     <meta name="description" content="GunitaHu Room">
     
     {{!-- AFrame --}}
-     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>  
+     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>  
 
     {{!-- Multiplayer dependencies --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
@@ -13,19 +13,18 @@
     <script src="https://unpkg.com/networked-aframe@0.8.0/dist/networked-aframe.min.js"></script>
 
     {{!-- AFrame Libraries --}}
-    {{!-- <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script> --}}
-    <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script>
-    {{!-- <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script> --}}
     <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
     <script src="https://unpkg.com/aframe-state-component@7.1.0/dist/aframe-state-component.min.js"></script>
     <script src="https://unpkg.com/aframe-animation-timeline-component@2.0.0/dist/aframe-animation-timeline-component.min.js"></script>
-
+    <script src="https://raw.githack.com/thedart76/aframe-blink-teleportation/master/js/aframe-blink-teleportation-min.js"></script>
+    
     
     {{!-- CSS + jQuery --}}
     <link rel="stylesheet" type="text/css" href="/static/css/loading.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    
     
     
  
@@ -41,10 +40,9 @@
     {{!-- Custom Components --}}
     <script src="/static/assets/js/load-assets.component.js"></script>
     <script src="/static/assets/js/spawn-outside.component.js"></script>
-    {{!-- <script src="/static/assets/js/capture-mouse.component.js"></script>
-    <script src="/static/assets/js/flower-grow.component.js"></script>
-    <script src="/static/assets/js/flower-drop.component.js"></script>
-    <script src="/static/assets/js/block.component.js"></script> --}}
+    {{!-- <script src="/static/assets/js/aframe-blink-teleportation.js"></script> --}}
+    <script src="/static/assets/js/rotation-reader.component.js"></script>
+    
 
     <script>
 
@@ -108,7 +106,8 @@
       adapter: easyrtc;
     "
     loading-screen="enabled:false"
-    cursor="rayOrigin:mouse"
+   
+    
     light="defaultLightsEnabled: false"
     animation-timeline__1="timeline: #myTimeline; loop: true"
     > 
@@ -136,47 +135,25 @@
 
       </a-assets>
 
-        <a-entity id="player"
-          oculus-go-controls
-          spawn-outside
-          networked="template:#avatar-template;attachTemplateToLocal:false;"
-          camera
-          position="0 1.6 0"
-          look-controls="pointerLockEnabled: true"
-          
-          wasd-controls="acceleration:10"
-          super-hands="colliderEvent: raycaster-intersection;
-            colliderEventProperty: els;
-            colliderEndEvent:raycaster-intersection-cleared;
-            colliderEndEventProperty: clearedEls;"
-            >
-          <a-sphere class="head" visible="false"></a-sphere>
-          <a-cursor></a-cursor>
-        </a-entity>
+        
+
+
+        
 
 
         <a-entity model-manager>
 
           {{> house }}
 
-          
-          
-
-
           {{!-- LIVING ROOM --}}
-
-          {{!-- {{> tv_set }}           --}}
           {{> remote }}
           {{> radio }}
           {{> camera }}
-
-          
           {{> sofa }}
           {{> scrapbook }}
-          {{!-- {{> bookshelf }} --}}
+          
           
           {{!-- GARDEN --}}
-          
           {{> bench }}
           {{> gardentable }} 
           {{> vasestand }}
@@ -248,20 +225,7 @@
 
         {{> hover }}
 
-    
-
       
-      
-
-
-     
-
-
-
-       {{!-- 3 Blocks Networked Test  --}}
-      {{!-- <a-entity id="test-block" networked="template:#box-template;attachTemplateToLocal:true;networkId:remote;persistent:true;owner:scene"></a-entity>
-      <a-box id="addBlock" position="0.8 1 -2.650" scale="0.5 0.5 0.5" material="color: green"></a-box>
-      <a-box id="minusBlock" position="-1 1 -2.650" scale="0.5 0.5 0.5" material="color: red"></a-box> --}}
 
       <a-entity id="state" bind__gameState=
       "has_done_remote: has_done_remote; 
@@ -311,6 +275,89 @@
 
       </a-image>
 
+
+      {{!-- Living Room Teleport Points --}}
+      <a-image src="#footsteps" 
+        position="0.547 0.3 -1.968" 
+        rotation="90 0 180"
+        class="clickable" 
+        blink-teleportation="pos: 0.547 0.0 -1.968; hide: false">
+      </a-image>
+
+
+      <a-image src="#footsteps" 
+        position="3.236 0.3 -5.498" 
+        rotation="90 0 180"
+        class="clickable" 
+        blink-teleportation="pos: 3.236 0.0 -5.498; hide: false">
+      </a-image>
+
+
+      <a-image src="#footsteps" 
+        position="3.456 0.3 -3.453" 
+        rotation="90 0 180"
+        class="clickable" 
+        blink-teleportation="pos: 3.456 0.0 -3.453; hide: false">
+      </a-image>
+
+
+
+
+
+
+      {{!-- Garden Teleport Points --}}
+      <a-image src="#footsteps" 
+        position="3.350 0.3 0.114" 
+        rotation="90 0 180"
+        class="clickable" 
+        blink-teleportation="pos: 3.350 0.0 0.114; hide: false">
+      </a-image>
+
+      <a-image src="#footsteps" 
+        position="6.341 0.3 0.809" 
+        rotation="90 0 180"
+        class="clickable" 
+        blink-teleportation="pos: 6.341 0.0 0.809; hide: false">
+      </a-image>
+
+      {{!-- Exit Room Teleport Point --}}
+      <a-image src="#footsteps" 
+        position="-8.826 0.2 4.357" 
+        rotation="90 0 180"
+        class="clickable" 
+        blink-teleportation="pos: -8.826 0.0 4.357; hide: false">
+      </a-image>
+
+      {{!-- Starting Point --}}
+      <a-image src="#footsteps" 
+        position="0.093 0.2 6.270" 
+        rotation="90 0 180"
+        class="clickable" 
+        blink-teleportation="pos: 0.093 0.0 6.270; hide: false">
+      </a-image>
+
+      <a-entity id="camRig" spawn-outside networked="template:#avatar-template;attachTemplateToLocal:false;"
+      >
+        
+
+        
+          <!-- CAMERA -->
+          <a-camera id="cam" wasd-controls-enabled="false" 
+        look-controls="pointerLockEnabled: true" networked="template:#avatar-template;attachTemplateToLocal:false;" 
+          ></a-camera>
+          
+          
+        
+            
+       
+      </a-entity>
+
+      
+
+      
+
+
+
     </a-scene>
 
 
@@ -338,7 +385,35 @@
         var bg = document.getElementById("bg-music")
         bg.volume = 0.05
       bg.play();
+
+
+     
     }
+
+
+    function removeHeadFace() {
+     var headExists = document.getElementsByClassName('head')
+     
+     if(headExists.length > 0) {
+         var head = document.querySelector('.head')
+        var face = document.querySelector('.face')
+        head.setAttribute('visible', false)
+        face.setAttribute('visible', false)
+        clearInterval(check)
+
+
+
+
+     }
+      
+    }
+
+    var check = setInterval(removeHeadFace, 500)
+    
+
+
+
+ 
   </script>
 
 
