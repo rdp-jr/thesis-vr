@@ -391,24 +391,23 @@
     }
 
 
-    function removeHeadFace() {
-     var headExists = document.getElementsByClassName('head')
-     
-     if(headExists.length > 0) {
-         var head = document.querySelector('.head')
+    
+
+    document.body.addEventListener('entityCreated', function (evt) {
+    // console.error('clientConnected event. clientId =', evt.detail.clientId);
+    var head = document.querySelector('.head')
         var face = document.querySelector('.face')
         head.setAttribute('visible', false)
         face.setAttribute('visible', false)
-        clearInterval(check)
+  });
 
-
-
-
-     }
-      
-    }
-
-    var check = setInterval(removeHeadFace, 500)
+  document.body.addEventListener('clientConnected', function (evt) {
+    // console.error('clientConnected event. clientId =', evt.detail.clientId);
+    var head = document.querySelector('.head')
+        var face = document.querySelector('.face')
+        head.setAttribute('visible', false)
+        face.setAttribute('visible', false)
+  });
     
 
 
