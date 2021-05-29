@@ -10,7 +10,8 @@ AFRAME.registerComponent('blink-teleportation', {
         color: {type: 'string', default: '#000000'},
         pos: {type: 'vec3'},
         dur: {type: 'number', default: 250},
-        hide: {type: 'boolean', default: false}
+        hide: {type: 'boolean', default: false},
+        rot: {type: 'vec3'},
 	},
 	
 	init: function () {
@@ -73,17 +74,17 @@ AFRAME.registerComponent('blink-teleportation', {
                 // WHEN FADE-IN ANIMATION COMPLETES, MOVE THE CAMERA RIG TO DESTINATION
                 setTimeout(function () {
                     data.cameraRig.setAttribute('position', data.pos);
+
+                    if (data.rot) {
+                        data.cameraRig.setAttribute('rotation', data.rot);
+                        // data.camera.setAttribute('rotation', {x: 0, y: 0, z: 0});
+                        console.log('rotated!')
+                        console.log(data.rot)
+                    } else {
+                        console.log('not rotated')
+                    }
                     
-                    // moved in the wrong direction
-                    // data.cameraRig.setAttribute('position', {x: 0, y: 0, z: 0});
-                    data.camera.setAttribute('position', data.pos)
-
-
-
-                    // console.log(data.pos)
-                    // new
-                    // document.getElementById('player').setAttribute('position', data.pos);
-                    // data.player.setAttribute('position', data.pos);
+                    
 
                     // CLASS AND VISIBLE ATTRIBUTES
                     for (var i = 0; i < blinkTeleportationEls.length; i++) {
@@ -100,6 +101,10 @@ AFRAME.registerComponent('blink-teleportation', {
                     if (data.hide === true) {
                         el.setAttribute('visible', 'false');
                     }
+
+
+
+                   
 
                     // EMIT CUSTOM EVENT TO TRIGGER THE FADE-OUT ANIMATION
                     el.emit('position-changed');
