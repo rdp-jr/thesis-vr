@@ -128,32 +128,15 @@ function clickWatercan() {
    NAF.connection.broadcastDataGuaranteed('camera-clicked', true)
    document.getElementById('sfx-camera').play()
   var state = document.getElementById('state')
-  var has_done_remote = state.getAttribute('has_done_remote')
-  var has_done_radio = state.getAttribute('has_done_radio')
-  var has_done_arrange = state.getAttribute('has_done_arrange')
-  var has_done_water = state.getAttribute('has_done_water')
   var has_scrapbook_1 = state.getAttribute('has_scrapbook_1')
-  var has_scrapbook_2 = state.getAttribute('has_scrapbook_2')
-  var has_scrapbook_3 = state.getAttribute('has_scrapbook_3')
-  var has_scrapbook_4 = state.getAttribute('has_scrapbook_4')
-  
-  if ((has_done_remote  == 'true') && (has_scrapbook_1 == 'false')) {
-    console.log('getting scrapbook 1 !!')
+
+  if (has_scrapbook_1 == 'false') {
     moveScrapbook('1')
-  } 
-  
-  if ((has_done_radio  == 'true') && (has_scrapbook_2 == 'false')) {
     moveScrapbook('2')
-  } 
-  
-  if ((has_done_arrange  == 'true') && (has_scrapbook_3 == 'false')) {
     moveScrapbook('3')
-  } 
-  
-  if ((has_done_water == 'true')  && (has_scrapbook_4 == 'false')) {
     moveScrapbook('4')
   } 
-   
+    
 }
 
 function moveScrapbook(id) {
@@ -183,7 +166,7 @@ function moveScrapbook(id) {
     default:
       break;
   }
-  // scrapbook_picture.setAttribute('animation__move', `property: position; to: 4.202 0.907 -1.436; dur: 1500`)
+ 
   var picture = document.getElementById(`scrapbook-${id}`)
   scrapbook_picture.setAttribute('animation__move', `property: position; to: ${position}; dur: 1500`)
   scrapbook_picture.setAttribute('animation__rotate', `property: rotation; to: ${rotation}; dur: 1500`)
@@ -201,11 +184,8 @@ function moveScrapbook(id) {
    document.getElementById('has_done_water').value = state.getAttribute('has_done_water')
 
   var scrapbook_1 = state.getAttribute('has_scrapbook_1')
-  var scrapbook_2 = state.getAttribute('has_scrapbook_2')
-  var scrapbook_3 = state.getAttribute('has_scrapbook_3')
-  var scrapbook_4 = state.getAttribute('has_scrapbook_4')
-
-  if ((scrapbook_1 == 'true') && (scrapbook_2 == 'true') && (scrapbook_3 == 'true') && (scrapbook_4 == 'true')) {
+ 
+  if (scrapbook_1 == 'true') {
     document.getElementById('has_done_scrapbook').value = 'true'
   } else {
     document.getElementById('has_done_scrapbook').value = 'false'
