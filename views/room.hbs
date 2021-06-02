@@ -16,19 +16,12 @@
     <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
     <script src="https://unpkg.com/aframe-state-component@7.1.0/dist/aframe-state-component.min.js"></script>
     <script src="https://unpkg.com/aframe-animation-timeline-component@2.0.0/dist/aframe-animation-timeline-component.min.js"></script>
-    {{!-- <script src="https://raw.githack.com/thedart76/aframe-blink-teleportation/master/js/aframe-blink-teleportation-min.js"></script> --}}
-    
-    
+        
     {{!-- CSS + jQuery --}}
     <link rel="stylesheet" type="text/css" href="/static/css/loading.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    
-    
-    
- 
- 
   </head>
  
   <body>
@@ -42,12 +35,7 @@
     <script src="/static/assets/js/spawn-outside.component.js"></script>
     <script src="/static/assets/js/aframe-blink-teleportation.js"></script>
     
-    
-
     <script>
-
-      
-
       AFRAME.registerState({
         initialState: {
           has_done_remote:false,
@@ -106,7 +94,7 @@
       adapter: easyrtc;
     "
     loading-screen="enabled:false"
-   
+    stats
     
     light="defaultLightsEnabled: false"
     animation-timeline__1="timeline: #myTimeline; loop: true"
@@ -119,27 +107,9 @@
         
 
         <!-- Templates -->
-        <template id="box-template">
-          <a-entity>
-            <a-box class="blk"
-             position="0 1 -2.650" 
-             scale="0.35 0.35 0.35" 
-             material="color: yellow"
-             block
-            ></a-box>
-          </a-entity>
-        </template>
-
-        
        {{> avatar_template }}
 
       </a-assets>
-
-        
-
-
-        
-
 
         <a-entity model-manager>
 
@@ -171,10 +141,6 @@
           {{> flower3 }}
           {{> flower4 }}
 
-
-         
-
-          
           {{> exit }}
 
         </a-entity>
@@ -300,11 +266,6 @@
         blink-teleportation="pos: 3.456 0.0 -3.453; hide: false; rot: 0 -70 0;">
       </a-image>
 
-
-
-
-
-
       {{!-- Garden Teleport Points --}}
       <a-image src="#footsteps" 
         position="3.350 0.3 0.114" 
@@ -339,27 +300,14 @@
       <a-entity id="camRig" spawn-outside networked="template:#avatar-template;attachTemplateToLocal:false;"
       >
         
-
-        
           <!-- CAMERA -->
           <a-camera id="cam" wasd-controls-enabled="false" 
         look-controls="pointerLockEnabled: true" networked="template:#avatar-template;attachTemplateToLocal:false;" 
           ></a-camera>
           
-          
-        
-            
-       
       </a-entity>
 
-      
-
-      
-
-
-
     </a-scene>
-
 
     <form id="post-session-form" method="POST" action="/room/post-session" enctype="multipart/form-data">
       <input type="hidden" name="room_id" value={{room_code}}>
@@ -384,14 +332,8 @@
     window.onload=function(){
         var bg = document.getElementById("bg-music")
         bg.volume = 0.05
-      bg.play();
-
-
-     
+      bg.play();     
     }
-
-
-    
 
     document.body.addEventListener('entityCreated', function (evt) {
     // console.error('clientConnected event. clientId =', evt.detail.clientId);
@@ -409,12 +351,6 @@
         face.setAttribute('visible', false)
   });
     
-
-
-
- 
   </script>
-
-
   </body>
 </html>
