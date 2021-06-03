@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
+<div class="container p-5 text-center">
+  
+  
+    <h1 class="font-weight-bold">Post Session Data</h1>
+
+     <h5> <span class="font-weight-bold">Room ID </span>{{ room_id }} </h5>
+        
+    <hr>
+
+    <div>
+    <p>The data from the application is not the sole metric for determining the improvement of the patient</p>
+  <p><i style="color:green" class="bi bi-check-circle-fill"></i> - Patient was able to do the task</p>
+  <p><i style="color:red" class="bi bi-x-circle-fill"></i> - Patient was unable to do the task</p>
+  </div>
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Turn on TV</th>
+      <th scope="col">Turn on Radio</th>
+      <th scope="col">Arrange flowers</th>
+      <th scope="col">Water plants</th>
+      <th scope="col">Scrapbook (optional)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {{#if has_done_remote}}
+        <i style="color:green" class="bi bi-check-circle-fill"></i>
+        {{else}}
+        <i style="color:red" class="bi bi-x-circle-fill"></i>
+        {{/if}}
+        </td>
+      <td>
+        {{#if has_done_radio}}
+        <i style="color:green" class="bi bi-check-circle-fill"></i>
+        {{else}}
+        <i style="color:red" class="bi bi-x-circle-fill"></i>
+        {{/if}}
+      </td>
+       <td>
+        {{#if has_done_arrange}}
+        <i style="color:green" class="bi bi-check-circle-fill"></i>
+        {{else}}
+        <i style="color:red" class="bi bi-x-circle-fill"></i>
+        {{/if}}
+      </td>
+      <td>
+        {{#if has_done_water}}
+        <i style="color:green" class="bi bi-check-circle-fill"></i>
+        {{else}}
+        <i style="color:red" class="bi bi-x-circle-fill"></i>
+        {{/if}}
+      </td>
+
+      <td>
+        {{#if has_done_scrapbook}}
+        <i style="color:green" class="bi bi-check-circle-fill"></i>
+        {{else}}
+        <i style="color:red" class="bi bi-x-circle-fill"></i>
+        {{/if}}
+      </td>
+     
+    </tr>
+    
+  </tbody>
+</table>
+
+
+
+<form method="POST" action="/room/edit">
+<input type="hidden" name="room_code" value="{{ room_id }}">
+  <input type="hidden" name="secret_key" value="{{ secret_key }}">
+  <input type="hidden" name="patient_name" value="{{ patient_name }}">
+  <input type="hidden" name="patient_age" value="{{ patient_age }}">
+  <input type="submit" class="btn btn-lg mt-5 btn-custom w-25 mt-5 mx-auto" value="Continue">
+</form>
+</div>

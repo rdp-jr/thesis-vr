@@ -13,8 +13,6 @@ const storage = multer.diskStorage({
 
   },
   filename: function (req, file, cb) {
-    // console.log('===========upload==========')
-    // console.log(req.body)
     const room_code = req.body.room_code
     const ext = file.originalname.split(".")
 
@@ -23,8 +21,8 @@ const storage = multer.diskStorage({
 
     cb(null, file_name)
 
-    const path = `/rooms/${room_code}/${file_name}`
-    db.run(`UPDATE rooms SET ${file.fieldname} = "${path}" WHERE room_code = "${room_code}"`)
+    // const path = `/rooms/${room_code}/${file_name}`
+    // db.run(`UPDATE rooms SET ${file.fieldname} = "${path}" WHERE room_code = "${room_code}"`)
   }
 })  
 
@@ -49,18 +47,25 @@ router.get('/secret', function(req, res) {
   res.render('room-secret')
 })
 
-router.post('/secret', upload.none(), roomController.edit)
+router.post('/secret', upload.none(), roomController.secret)
 
 router.get('/edit', function(req, res) {
   res.redirect('/room/secret')
 })
 
 const fields = [
-  {name: "image_1", maxCount: 1 },
-  {name: "image_2", maxCount: 1 },
-  {name: "video_1", maxCount: 1},
-  {name: "music_1", maxCount: 1}
+  {name: "video_1", maxCount: 1 },
+  {name: "music_1", maxCount: 1 },
+  {name: "wall_1", maxCount: 1 },
+  {name: "wall_2", maxCount: 1 },
+  {name: "book_cover_1", maxCount: 1 },
+  {name: "movie_poster_1", maxCount: 1 },
+  {name: "scrapbook_1", maxCount: 1 },
+  {name: "scrapbook_2", maxCount: 1 },
+  {name: "scrapbook_3", maxCount: 1 },
+  {name: "scrapbook_4", maxCount: 1 } 
 ]
+
 router.post('/edit', upload.fields(fields), roomController.edit)
 
 router.get('/delete', function(req, res) {
@@ -69,10 +74,27 @@ router.get('/delete', function(req, res) {
 
 router.post('/delete', upload.none(), roomController.del)
 
-
-
-
-
 router.get('/db', roomController.room_show_db)
+
+router.get('/db-points', roomController.room_show_db_points)
+
+router.post('/post-session', upload.none(), roomController.post_session)
+
+router.get('/post-session', function(req, res) {
+  res.send('wait')
+})
+
+router.get('/archive', function(req, res) {
+  res.send('wait lang din')
+})
+
+router.post('/archive', upload.none(), roomController.archive)
+
+router.get('/join-test', upload.none(), roomController.join_test)
+
+
+router.get('/join-old', upload.none(), function(req, res) {
+  res.render('room-old')
+})
 
 module.exports = router

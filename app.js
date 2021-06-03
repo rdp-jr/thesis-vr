@@ -7,6 +7,7 @@ const easyrtc = require('open-easyrtc')
 const http = require('http')
 const socketIo = require('socket.io')
 
+
 require('dotenv').config()
 process.title = "networked-aframe-server"
 
@@ -88,9 +89,6 @@ var rtc = easyrtc.listen(app, socketServer, null, function(err, rtcRef) {
 
 
 // Routes Section
-app.use('/test', (req, res) => {
-  res.render('temp', {room_code: 6969, secret_key: "69420"})
-})
 app.use(indexRoutes)
 app.use('/room', roomRoutes)
 

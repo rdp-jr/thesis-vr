@@ -4,8 +4,11 @@
     <div class="alert alert-danger">{{ error }}</div>
   {{/if}}
   <form method="POST" action="/room/join" enctype="multipart/form-data">
-    
+  <h1 class="font-weight-bold text-center">JOIN ROOM</h1>
+     <hr>
     <div class="form-group d-flex flex-column align-items-center justify-content-center p-5">
+      
+     
       <h2 class="font-weight-bold">Enter Room Code</h2>
       
 
@@ -13,8 +16,8 @@
         <i class="fa fa-lock pt-1 pr-2" aria-hidden="true" style="font-size:x-large"></i>
         <input class="form-control" type="text" name="room_code" autocomplete="off">
       </div>
-      <input class="btn btn-lg mt-5 btn-custom w-25 mt-5 mx-auto" type="submit" value="Join Room">
+      <input class="btn btn-lg mt-5 btn-custom mt-5 mx-auto" type="submit" value="Join Room">
     </div>
   </form>
-  <div class="text-center"><a class="text-black" href="/room/create"><u>Create Room</u></a></div>
+  <div class="text-center"><a class="text-black" href="/get-started"><u>Go Back</u></a></div>
 </div>

@@ -12,6 +12,10 @@
     {{#if error}}
       <div class="alert alert-danger">{{ error }}</div>
     {{/if}}
+
+    <h1>CREATE ROOM</h1>
+    <hr>
+
     <form method="POST" action="/room/create" enctype="multipart/form-data">
         <div class="form-group d-flex flex-column align-items-center justify-content-center p-5">
           <h2 class="font-weight-bold">Data Privacy</h2>
@@ -40,6 +44,8 @@
             <li>Monitor and analyze usage to improve the VR experience</li>
           </ul>
 
+        <p><b>Validity of Data</b></p>
+        <p>The data from the application is not the sole metric for determining the improvement of the patient</p>
 
          <p><b>Disclosure of your information</b></p>
          <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
@@ -56,9 +62,9 @@
               I agree to the Data Privacy Policy
             </label>
           </div>
-          <input class="btn btn-lg mt-5 btn-custom w-25 mt-5 mx-auto" type="submit" value="Create Room">
+          <input class="btn btn-lg mt-5 btn-custom mt-5 mx-auto" type="submit" value="Create Room">
         </div>
     </form>
-    <div class="text-center"><a class="text-black" href="/room/join"><u>Join Room</u></a></div>
+    <div class="text-center"><a class="text-black" href="/get-started"><u>Go Back</u></a></div>
   {{/if}}
 </div>
