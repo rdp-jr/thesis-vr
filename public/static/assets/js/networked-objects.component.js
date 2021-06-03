@@ -1,16 +1,3 @@
-NAF.schemas.add({
-  template: '#box-template',
-  components: [
-    'position',
-    'rotation',
-    'scale',
-    {
-      selector: '.blk',
-      component: 'position'
-    }
-  ]
-})
-
 // NAF.schemas.add({
 //   template: '#flower-template',
 //   components: [
